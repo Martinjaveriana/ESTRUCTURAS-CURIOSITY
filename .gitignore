@@ -1,0 +1,41 @@
+# Directorios de compilación de CLion
+cmake-build-*/
+build/
+cmake-build-debug/
+cmake-build-release/
+out/
+
+# Archivos de CLion
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Archivos objeto y ejecutables de C++
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Archivos de CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+cmake-build-*/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de respaldo
+*~
+*.swp
+*.swo
