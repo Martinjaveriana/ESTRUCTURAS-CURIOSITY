@@ -1,5 +1,0 @@
-C:\Users\alexa\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/alexa/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -G Ninja -S "C:\Users\alexa\Ingenieria de Sistemas - data\Programacion\Proyectos CLion\Estructura de Datos\Proyecto\Proyecto Curiosity" -B "C:\Users\alexa\Ingenieria de Sistemas - data\Programacion\Proyectos CLion\Estructura de Datos\Proyecto\Proyecto Curiosity\cmake-build-debug"
--- Archivos del proyecto: Include/Cabeceras/controladorUI.h;cmake-build-debug/CMakeFiles/4.1.2/CompilerIdCXX/CMakeCXXCompilerId.cpp;src/InterfazUsuario/controladorUI.cxx;src/InterfazUsuario/interfazUsuario.cxx
--- Configuring done (0.1s)
--- Generating done (0.1s)
--- Build files have been written to: C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug
