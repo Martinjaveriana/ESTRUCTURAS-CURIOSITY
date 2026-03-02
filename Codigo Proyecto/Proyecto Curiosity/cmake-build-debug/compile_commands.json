@@ -1,0 +1,20 @@
+[
+{
+  "directory": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\curiosity.dir\\CMakeFiles\\4.1.2\\CompilerIdCXX\\CMakeCXXCompilerId.cpp.obj -c \"C:\\Users\\alexa\\Ingenieria de Sistemas - data\\Programacion\\Proyectos CLion\\Estructura de Datos\\Proyecto\\Proyecto Curiosity\\cmake-build-debug\\CMakeFiles\\4.1.2\\CompilerIdCXX\\CMakeCXXCompilerId.cpp\"",
+  "file": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/4.1.2/CompilerIdCXX/CMakeCXXCompilerId.cpp",
+  "output": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/CMakeFiles/4.1.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.obj"
+},
+{
+  "directory": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\curiosity.dir\\src\\InterfazUsuario\\controladorUI.cxx.obj -c \"C:\\Users\\alexa\\Ingenieria de Sistemas - data\\Programacion\\Proyectos CLion\\Estructura de Datos\\Proyecto\\Proyecto Curiosity\\src\\InterfazUsuario\\controladorUI.cxx\"",
+  "file": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/src/InterfazUsuario/controladorUI.cxx",
+  "output": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/src/InterfazUsuario/controladorUI.cxx.obj"
+},
+{
+  "directory": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
+  "command": "C:\\msys64\\mingw64\\bin\\c++.exe -g -std=gnu++17 -fdiagnostics-color=always -o CMakeFiles\\curiosity.dir\\src\\InterfazUsuario\\interfazUsuario.cxx.obj -c \"C:\\Users\\alexa\\Ingenieria de Sistemas - data\\Programacion\\Proyectos CLion\\Estructura de Datos\\Proyecto\\Proyecto Curiosity\\src\\InterfazUsuario\\interfazUsuario.cxx\"",
+  "file": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/src/InterfazUsuario/interfazUsuario.cxx",
+  "output": "C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/src/InterfazUsuario/interfazUsuario.cxx.obj"
+}
+]

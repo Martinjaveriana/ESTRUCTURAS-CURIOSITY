@@ -1,0 +1,3 @@
+C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir
+C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/alexa/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/rebuild_cache.dir
