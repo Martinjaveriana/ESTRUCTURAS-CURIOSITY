@@ -1,0 +1,18 @@
+# --- IDEs y Editores ---
+.idea/
+.vscode/
+*.swp
+*.pws
+cmake-build-debug/
+cmake-build-release/
+
+# --- Compilación y Ejecutables ---
+*.exe
+*.o
+*.obj
+*.out
+*.app
+
+# --- Archivos Temporales de Sistema ---
+Thumbs.db
+.DS_Store
