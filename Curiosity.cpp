@@ -136,7 +136,7 @@ void Curiosity::procesar(const string& entrada) {
     }
 
 
-	if(argumentos.size() > 1) {
+	else if(argumentos.size() > 1) {
 		if(argumentos[0] == "salir") {
 			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
 			cout<<"Enviar la palabra 'salida' para salir"<<endl<<endl;
