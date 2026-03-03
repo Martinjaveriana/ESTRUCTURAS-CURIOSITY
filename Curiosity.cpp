@@ -15,9 +15,18 @@ Curiosity::Curiosity() {
     // agregar el resto de las clases/atributos que tenga el curiosity
 }
 
-
+//=============================================
 //  Metodo principal —> el que llama el main
+//=============================================
+
 void Curiosity::procesar(const string& entrada) {
+
+    /*Estrucura de los ifs:
+     * 1. solo se envia un argumento
+     * 2. ayuda + arumento
+     * 3. else CAMBIAR
+     */
+
     vector<string> argumentos = obtenerArgumentos(entrada);
     if (argumentos.empty()) return;
 
