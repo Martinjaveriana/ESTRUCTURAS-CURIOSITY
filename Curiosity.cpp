@@ -122,12 +122,10 @@ void Curiosity::procesar(const string& entrada) {
             else if (argumentos[1] == "salir") {
                 salirA();
             }
-/*
-            else {
-                cout << "Error: comando no existente" << endl;
+            else { //revisar si lo rompe
+                cout <<endl<< "Error: comando no existente" << endl<<endl;
             }
-*/
-        }
+       }
         else {
             cout << endl << "Error: numero de parametros incorrecto" << endl;
             cout << "Syntaxis del comando: ayuda <nombre_comado>" << endl;
@@ -164,6 +162,7 @@ void Curiosity::procesar(const string& entrada) {
     //comandos con argumentos
     //si no se envia un comando con un argumento y
 	//descomentar al momento de hacerlo
+	//agregar verificaciones :(
     else {
         if (argumentos[0] == "cargar_comandos") {
             cargar_comandos(argumentos);
@@ -339,7 +338,7 @@ void Curiosity::simular_comandos(vector<string>& args) {
                  << "), deja al robot en la nueva posicion (nuevoX, nuevoY)." << endl;
         }
     } else {
-        cout << "Error: numero de parametros incorrecto" << endl;
+        cout <<endl<< "Error: numero de parametros incorrecto" << endl;
         simularComandosA();
     }
 }
@@ -362,7 +361,7 @@ void Curiosity::ubicar_elementos() {
             arElementos.close();
         }
     } else {
-        cout << "Error: numero de parametros incorrecto" << endl;
+        cout << "Error: numero de parametros incorrecto (a implementar)" << endl;
         ubicarElementoA();
     }
 }
@@ -502,19 +501,19 @@ bool Curiosity::verificador(const string& cadena, int opcion) {
 void Curiosity::funcionAyuda() {
     cout << "\n\t\t\tAYUDA SELECCIONADA\n" << endl;
     cout << "Mostrando los comandos disponibles junto con la sintaxis de cada uno:\n" << endl;
-    cout << "- ayuda" << endl;
-    cout << "- cargar_comandos <nombre_archivo>" << endl;
-    cout << "- cargar_elementos <nombre_archivo>" << endl;
-    cout << "- agregar_movimiento <tipo_mov> <magnitud> <unidad_med>" << endl;
-    cout << "- agregar_analisis <tipo_analisis> <objeto> <comentario>" << endl;
-    cout << "- agregar_elemento <tipo_comp> <tamano> <unidad_med> <coordX> <coordY>" << endl;
-    cout << "- guardar <tipo_archivo> <nombre_archivo>" << endl;
-    cout << "- simular_comandos <coordX> <coordY>" << endl;
-    cout << "- ubicar_elementos" << endl;
-    cout << "- en_cuadrante <coordX1> <coordX2> <coordY1> <coordY2>" << endl;
-    cout << "- crear_mapa <coeficiente_conectividad>" << endl;
-    cout << "- ruta_mas_larga" << endl;
-    cout << "- salir" << endl << endl;
+    cout << "ayuda" << endl;
+    cout << "cargar_comandos <nombre_archivo>" << endl;
+    cout << "cargar_elementos <nombre_archivo>" << endl;
+    cout << "agregar_movimiento <tipo_mov> <magnitud> <unidad_med>" << endl;
+    cout << "agregar_analisis <tipo_analisis> <objeto> <comentario>" << endl;
+    cout << "agregar_elemento <tipo_comp> <tamano> <unidad_med> <coordX> <coordY>" << endl;
+    cout << "guardar <tipo_archivo> <nombre_archivo>" << endl;
+    cout << "simular_comandos <coordX> <coordY>" << endl;
+    cout << "ubicar_elementos" << endl;
+    cout << "en_cuadrante <coordX1> <coordX2> <coordY1> <coordY2>" << endl;
+    cout << "crear_mapa <coeficiente_conectividad>" << endl;
+    cout << "ruta_mas_larga" << endl;
+    cout << "salir" << endl << endl;
 }
 
 void Curiosity::ayudaA() {

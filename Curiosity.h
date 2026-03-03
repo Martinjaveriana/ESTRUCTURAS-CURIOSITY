@@ -8,13 +8,13 @@
 #include <vector>
 #include <string>
 
-// #include "Elemento.h"
+#include "Elemento.h"
 // #include "Comando.h"
 
 class Curiosity {
 
 private:
-    //std::vector<std::string> elementos;
+    vector<std::Elemento> elementos_C;
     //std::vector<std::string> comandos;
 
 public:
@@ -24,6 +24,8 @@ public:
     void procesar(const std::string& entrada);
 
 private:
+
+//getter y setters de las listas de elementos y comandos
 
     //comandos del doc
     void cargar_comandos(std::vector<std::string>& args);
