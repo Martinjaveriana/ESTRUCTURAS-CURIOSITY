@@ -8,38 +8,37 @@
 #include <vector>
 #include <string>
 
-// TODO: cuando esten listas, reemplazar por:
 // #include "Elemento.h"
 // #include "Comando.h"
 
 class Curiosity {
 
 private:
-    std::vector<std::string> elementos; // TODO: vector<Elemento>
-    std::vector<std::string> comandos;  // TODO: vector<Comando>
+    //std::vector<std::string> elementos;
+    //std::vector<std::string> comandos;
 
 public:
-    // --- Constructor ---
     Curiosity();
 
-    // --- Metodo principal: recibe el input del main y lo despacha todo ---
+    // Metodo principal: el main solo llama este
     void procesar(const std::string& entrada);
 
 private:
-    // --- Comandos principales ---
-    void cargar_comandos(const std::string& nombre_archivo);
-    void cargar_elementos(const std::string& nombre_archivo);
-    void agregar_movimiento(const std::string& tipo, const std::string& magnitud, const std::string& unidad);
-    void agregar_analisis(const std::string& tipo, const std::string& objeto, const std::string& comentario);
-    void agregar_elemento(const std::string& tipo, const std::string& tamanio, const std::string& unidad, const std::string& coordX, const std::string& coordY);
-    void guardar(const std::string& tipo, const std::string& nombre_archivo);
-    void simular_comandos(const std::string& coordX, const std::string& coordY);
+
+    //comandos del doc
+    void cargar_comandos(std::vector<std::string>& args);
+    void cargar_elementos(std::vector<std::string>& args);
+    void agregar_movimiento(std::vector<std::string>& args);
+    void agregar_analisis(std::vector<std::string>& args);
+    void agregar_elemento(std::vector<std::string>& args);
+    void guardar(std::vector<std::string>& args);
+    void simular_comandos(std::vector<std::string>& args);
     void ubicar_elementos();
-    void en_cuadrante(const std::string& xMin, const std::string& xMax, const std::string& yMin, const std::string& yMax);
-    void crear_mapa(const std::string& coeficiente);
+    void en_cuadrante(std::vector<std::string>& args);
+    void crear_mapa(std::vector<std::string>& args);
     void ruta_mas_larga();
 
-    // --- Mensajes de ayuda ---
+    //ayudas
     void funcionAyuda();
     void ayudaA();
     void cargarComandosA();
@@ -55,7 +54,7 @@ private:
     void rutaMasLargaA();
     void salirA();
 
-    // --- Utilidades internas ---
+    //ayudas para interpretar comandos
     std::vector<std::string> obtenerArgumentos(const std::string& entrada);
     bool verificador(const std::string& cadena, int opcion);
 };

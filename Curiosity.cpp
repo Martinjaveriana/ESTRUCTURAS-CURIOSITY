@@ -9,232 +9,449 @@
 
 using namespace std;
 
-// ============================================================
 //  Constructor
-// ============================================================
 
 Curiosity::Curiosity() {
-    // inicializa estructuras cuando esten listas
+    // agregar el resto de las clases/atributos que tenga el curiosity
 }
 
-// ============================================================
-//  Metodo principal — el main solo llama este metodo
-// ============================================================
 
+//  Metodo principal —> el que llama el main
 void Curiosity::procesar(const string& entrada) {
-    vector<string> args = obtenerArgumentos(entrada);
-    if (args.empty()) return;
+    vector<string> argumentos = obtenerArgumentos(entrada);
+    if (argumentos.empty()) return;
 
-    string cmd = args[0];
+    //ayuda sin argumentos y comandos sin argumentos
+    //se entra a este if si solo se envia un argumento
+    if (argumentos.size() == 1) {
+        if (argumentos[0] == "ayuda") {
+            funcionAyuda();
+        }
+        else if (argumentos[0] == "ubicar_elementos") {
+            ubicar_elementos();
+        }
+        else if (argumentos[0] == "ruta_mas_larga") {
+            ruta_mas_larga();
+        }
+        else if (argumentos[0] == "cargar_comandos") {
+            cout << "Error: numero de parametros incorrecto" << endl; cargarComandosA();
+        }
+        else if (argumentos[0] == "cargar_elementos") {
+            cout << "Error: numero de parametros incorrecto" << endl; cargarElementosA();
+        }
+        else if (argumentos[0] == "agregar_movimiento") {
+            cout << "Error: numero de parametros incorrecto" << endl; agregarMovimientoA();
+        }
+        else if (argumentos[0] == "agregar_analisis") {
+            cout << "Error: numero de parametros incorrecto" << endl; agregarAnalisisA();
+        }
+        else if (argumentos[0] == "agregar_elemento") {
+            cout << "Error: numero de parametros incorrecto" << endl; agregarElementoA();
+        }
+        else if (argumentos[0] == "guardar") {
+            cout << "Error: numero de parametros incorrecto" << endl; guardarA();
+        }
+        else if (argumentos[0] == "simular_comandos") {
+            cout << "Error: numero de parametros incorrecto" << endl; simularComandosA();
+        }
+        else if (argumentos[0] == "ubicar_elemento") {
+            cout << "Error: numero de parametros incorrecto" << endl; ubicarElementoA();
+        }
+        else if (argumentos[0] == "en_cuadrante") {
+            cout << "Error: numero de parametros incorrecto" << endl; enCuadranteA();
+        }
+        else if (argumentos[0] == "crear_mapa") {
+            cout << "Error: numero de parametros incorrecto" << endl; crearMapaA();
+        }
+        else {
+            cout << "Error: comando no existente" << endl;
+        }
+    }
 
-    // ayuda sin argumentos
-    if (cmd == "ayuda" && args.size() == 1) {
-        funcionAyuda();
 
-    // ayuda <comando>
-    } else if (cmd == "ayuda" && args.size() > 1) {
-        if      (args[1] == "ayuda")              ayudaA();
-        else if (args[1] == "cargar_comandos")    cargarComandosA();
-        else if (args[1] == "cargar_elementos")   cargarElementosA();
-        else if (args[1] == "agregar_movimiento") agregarMovimientoA();
-        else if (args[1] == "agregar_analisis")   agregarAnalisisA();
-        else if (args[1] == "agregar_elemento")   agregarElementoA();
-        else if (args[1] == "guardar")            guardarA();
-        else if (args[1] == "simular_comandos")   simularComandosA();
-        else if (args[1] == "ubicar_elementos")   ubicarElementoA();
-        else if (args[1] == "en_cuadrante")       enCuadranteA();
-        else if (args[1] == "crear_mapa")         crearMapaA();
-        else if (args[1] == "ruta_mas_larga")     rutaMasLargaA();
-        else if (args[1] == "salir")              salirA();
-        else cout << "Error: comando no existente" << endl;
+    //comandos ayuda + comando
+    //se entra a estos if si el primer argumento es "ayuda"
+    //se hace la verificacion si se envian mas argumentos...
+    else if (argumentos[0] == "ayuda") {
+        if (argumentos.size() == 2) {
+            if      (argumentos[1] == "ayuda") {
+                ayudaA();
+            }
+            else if (argumentos[1] == "cargar_comandos") {
+                cargarComandosA();
+            }
+            else if (argumentos[1] == "cargar_elementos") {
+                cargarElementosA();
+            }
+            else if (argumentos[1] == "agregar_movimiento") {
+                agregarMovimientoA();
+            }
+            else if (argumentos[1] == "agregar_analisis") {
+                agregarAnalisisA();
+            }
+            else if (argumentos[1] == "agregar_elemento") {
+                agregarElementoA();
+            }
+            else if (argumentos[1] == "guardar") {
+                guardarA();
+            }
+            else if (argumentos[1] == "simular_comandos") {
+                simularComandosA();
+            }
+            else if (argumentos[1] == "ubicar_elementos") {
+                ubicarElementoA();
+            }
+            else if (argumentos[1] == "en_cuadrante") {
+                enCuadranteA();
+            }
+            else if (argumentos[1] == "crear_mapa") {
+                crearMapaA();
+            }
+            else if (argumentos[1] == "ruta_mas_larga") {
+                rutaMasLargaA();
+            }
+            else if (argumentos[1] == "salir") {
+                salirA();
+            }
+            else {
+                cout << "Error: comando no existente" << endl;
+            }
+        }
+        else {
+            cout << endl << "Error: numero de parametros incorrecto" << endl;
+            cout << "Syntaxis del comando: ayuda <nombre_comado>" << endl;
+            cout << "tambien puede escribir 'ayuda' para ver la lista de comados" << endl<<endl;
+        }
+    }
 
-    // comandos con parametros incorrectos (solo el nombre, sin args)
-    } else if (args.size() == 1) {
-        if      (cmd == "cargar_comandos")    { cout << "Error: numero de parametros incorrecto" << endl; cargarComandosA(); }
-        else if (cmd == "cargar_elementos")   { cout << "Error: numero de parametros incorrecto" << endl; cargarElementosA(); }
-        else if (cmd == "agregar_movimiento") { cout << "Error: numero de parametros incorrecto" << endl; agregarMovimientoA(); }
-        else if (cmd == "agregar_analisis")   { cout << "Error: numero de parametros incorrecto" << endl; agregarAnalisisA(); }
-        else if (cmd == "agregar_elemento")   { cout << "Error: numero de parametros incorrecto" << endl; agregarElementoA(); }
-        else if (cmd == "guardar")            { cout << "Error: numero de parametros incorrecto" << endl; guardarA(); }
-        else if (cmd == "simular_comandos")   { cout << "Error: numero de parametros incorrecto" << endl; simularComandosA(); }
-        else if (cmd == "en_cuadrante")       { cout << "Error: numero de parametros incorrecto" << endl; enCuadranteA(); }
-        else if (cmd == "crear_mapa")         { cout << "Error: numero de parametros incorrecto" << endl; crearMapaA(); }
-        else if (cmd == "ubicar_elementos")   ubicar_elementos();
-        else if (cmd == "ruta_mas_larga")     ruta_mas_larga();
-        else cout << "Error: comando no existente" << endl;
 
-    // comandos normales con argumentos
+
+    //comandos con argumentos
+    //si no se envia un comando con un argumento y
+    else {
+        if (argumentos[0] == "cargar_comandos") {
+            cargar_comandos(argumentos);
+        }
+        else if (argumentos[0] == "cargar_elementos") {
+            cargar_elementos(argumentos);
+        }
+        else if (argumentos[0] == "agregar_movimiento") {
+            agregar_movimiento(argumentos);
+        }
+        else if (argumentos[0] == "agregar_analisis") {
+            agregar_analisis(argumentos);
+        }
+        else if (argumentos[0] == "agregar_elemento") {
+            agregar_elemento(argumentos);
+        }
+        else if (argumentos[0] == "guardar") {
+            guardar(argumentos);
+        }
+        else if (argumentos[0] == "simular_comandos") {
+            simular_comandos(argumentos);
+        }
+        else if (argumentos[0] == "en_cuadrante") {
+            en_cuadrante(argumentos);
+        }
+        else if (argumentos[0] == "crear_mapa") {
+            crear_mapa(argumentos);
+        }
+        else {
+            cout << "Error: comando no existente" << endl;
+        }
+    }
+}
+
+//  Logica de cada comando
+
+void Curiosity::cargar_comandos(vector<string>& args) {
+    if (args.size() == 2) {
+        ifstream arComandos((args[1] + ".txt"), ios::ate);
+        int nComandos = 0;
+
+        if (arComandos.is_open()) {
+            if (arComandos.tellg() == 0) {
+                cout << args[1] << " no contiene comandos." << endl;
+            } else {
+                arComandos.seekg(0, ios::beg);
+                //leer lineas y agregar al vector<Comando>
+                cout << nComandos << " comandos cargados correctamente desde " << args[1] << endl;
+                arComandos.close();
+            }
+        } else {
+            cout << args[1] << " no se encuentra o no puede leerse." << endl;
+        }
     } else {
-        if      (cmd == "cargar_comandos")    cargar_comandos(args[1]);
-        else if (cmd == "cargar_elementos")   cargar_elementos(args[1]);
-        else if (cmd == "agregar_movimiento") agregar_movimiento(args[1], args[2], args[3]);
-        else if (cmd == "agregar_analisis")   agregar_analisis(args[1], args[2], args[3]);
-        else if (cmd == "agregar_elemento")   agregar_elemento(args[1], args[2], args[3], args[4], args[5]);
-        else if (cmd == "guardar")            guardar(args[1], args[2]);
-        else if (cmd == "simular_comandos")   simular_comandos(args[1], args[2]);
-        else if (cmd == "en_cuadrante")       en_cuadrante(args[1], args[2], args[3], args[4]);
-        else if (cmd == "crear_mapa")         crear_mapa(args[1]);
-        else cout << "Error: comando no existente" << endl;
+        cout << "Error: numero de parametros incorrecto" << endl;
+        cargarComandosA();
     }
 }
 
-// ============================================================
-//  Comandos principales
-// ============================================================
+void Curiosity::cargar_elementos(vector<string>& args) {
+    if (args.size() == 2) {
+        ifstream arElementos((args[1] + ".txt"), ios::ate);
+        int nElementos = 0;
 
-void Curiosity::cargar_comandos(const string& nombre_archivo) {
-    ifstream ar((nombre_archivo + ".txt"), ios::ate);
-    if (!ar.is_open()) {
-        cout << nombre_archivo << " no se encuentra o no puede leerse." << endl;
-        return;
+        if (arElementos.is_open()) {
+            if (arElementos.tellg() == 0) {
+                cout << args[1] << " no contiene elementos." << endl;
+            } else {
+                arElementos.seekg(0, ios::beg);
+                cout << nElementos << " elementos cargados correctamente desde " << args[1] << endl;
+                arElementos.close();
+            }
+        } else {
+            cout << args[1] << " no se encuentra o no puede leerse." << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        cargarElementosA();
     }
-    if (ar.tellg() == 0) {
-        cout << nombre_archivo << " no contiene comandos." << endl;
-        return;
-    }
-    ar.seekg(0, ios::beg);
-    int nComandos = 0;
-    // TODO: leer lineas y agregar al vector<Comando>
-    cout << nComandos << " comandos cargados correctamente desde " << nombre_archivo << endl;
-    ar.close();
 }
 
-void Curiosity::cargar_elementos(const string& nombre_archivo) {
-    ifstream ar((nombre_archivo + ".txt"), ios::ate);
-    if (!ar.is_open()) {
-        cout << nombre_archivo << " no se encuentra o no puede leerse." << endl;
-        return;
+void Curiosity::agregar_movimiento(vector<string>& args) {
+    if (args.size() == 4) {
+        bool verMov = true, verMag = true, verUni = true;
+
+        if (args[1] != "avanzar" && args[1] != "girar") verMov = false;
+        if (!verificador(args[2], 1)) verMag = false;
+        if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km") verUni = false;
+
+        if (!verMov || !verMag || !verUni) {
+            cout << "La informacion del movimiento no corresponde a los datos esperados (tipo, magnitud, unidad)" << endl;
+        } else {
+            cout << "El comando de movimiento ha sido agregado exitosamente" << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        agregarMovimientoA();
     }
-    if (ar.tellg() == 0) {
-        cout << nombre_archivo << " no contiene elementos." << endl;
-        return;
-    }
-    ar.seekg(0, ios::beg);
-    int nElementos = 0;
-    // TODO: leer lineas y agregar al vector<Elemento>
-    cout << nElementos << " elementos cargados correctamente desde " << nombre_archivo << endl;
-    ar.close();
 }
 
-void Curiosity::agregar_movimiento(const string& tipo, const string& magnitud, const string& unidad) {
-    bool verTipo = (tipo == "avanzar" || tipo == "girar");
-    bool verMag  = verificador(magnitud, 1);
-    bool verUni  = (unidad == "cm" || unidad == "dm" || unidad == "m" || unidad == "km");
+void Curiosity::agregar_analisis(vector<string>& args) {
+    if (args.size() == 4) {
+        bool verAna = true, verCom = true;
 
-    if (!verTipo || !verMag || !verUni) {
-        cout << "La informacion del movimiento no corresponde a los datos esperados (tipo, magnitud, unidad)" << endl;
-        return;
+        if (args[1] != "fotografiar" && args[1] != "composicion" && args[1] != "perforar") verAna = false;
+        if (!verificador(args[3], 2)) verCom = false;
+
+        if (!verAna || !verCom) {
+            cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
+        } else {
+            cout << "El comando de analisis ha sido agregado exitosamente" << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        agregarAnalisisA();
     }
-    // TODO: crear Movimiento y agregarlo al vector<Comando>
-    cout << "El comando de movimiento ha sido agregado exitosamente" << endl;
 }
 
-void Curiosity::agregar_analisis(const string& tipo, const string& objeto, const string& comentario) {
-    bool verTipo = (tipo == "fotografiar" || tipo == "composicion" || tipo == "perforar");
-    bool verCom  = verificador(comentario, 2);
+void Curiosity::agregar_elemento(vector<string>& args) {
+    if (args.size() == 6) {
+        bool verEle = true, verTam = true, verUni = true, verCor = true;
 
-    if (!verTipo || !verCom) {
-        cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
-        return;
+        if (args[1] != "roca" && args[1] != "crater" && args[1] != "monticulo" && args[1] != "duna") verEle = false;
+        if (!verificador(args[2], 3)) verTam = false;
+        if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km") verUni = false;
+        if (!verificador(args[4], 1) || !verificador(args[5], 1)) verCor = false;
+
+        if (!verEle || !verTam || !verUni || !verCor) {
+            cout << "La informacion del elemento no corresponde a los datos esperados (tipo, tamano, unidad, x, y)" << endl;
+        } else {
+            cout << "El elemento ha sido agregado exitosamente" << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        agregarElementoA();
     }
-    // TODO: crear Analisis y agregarlo al vector<Comando>
-    cout << "El comando de analisis ha sido agregado exitosamente" << endl;
 }
 
-void Curiosity::agregar_elemento(const string& tipo, const string& tamanio, const string& unidad, const string& coordX, const string& coordY) {
-    bool verTipo = (tipo == "roca" || tipo == "crater" || tipo == "monticulo" || tipo == "duna");
-    bool verTam  = verificador(tamanio, 3);
-    bool verUni  = (unidad == "cm" || unidad == "dm" || unidad == "m" || unidad == "km");
-    bool verCor  = verificador(coordX, 1) && verificador(coordY, 1);
+void Curiosity::guardar(vector<string>& args) {
+    if (args.size() == 3) {
+        bool verInfo = true;
 
-    if (!verTipo || !verTam || !verUni || !verCor) {
-        cout << "La informacion del elemento no corresponde a los datos esperados (tipo, tamano, unidad, x, y)" << endl;
-        return;
+        if (args[1] != "comandos" && args[1] != "elementos") verInfo = false;
+
+        if (verInfo) {
+            ofstream arAGuardar((args[2] + ".txt"));
+            if (arAGuardar.is_open()) {
+                cout << "La informacion ha sido guardada en " << args[2] << endl;
+                arAGuardar.close();
+            } else {
+                cout << "Error guardando en " << args[2] << endl;
+            }
+        } else {
+            cout << "tipo de informacion incorrecta" << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        guardarA();
     }
-    // TODO: crear Elemento y agregarlo al vector<Elemento>
-    cout << "El elemento ha sido agregado exitosamente" << endl;
 }
 
-void Curiosity::guardar(const string& tipo, const string& nombre_archivo) {
-    if (tipo != "comandos" && tipo != "elementos") {
-        cout << "tipo de informacion incorrecta" << endl;
-        return;
-    }
-    ofstream ar((nombre_archivo + ".txt"));
-    if (!ar.is_open()) {
-        cout << "Error guardando en " << nombre_archivo << endl;
-        return;
-    }
-    // TODO: recorrer el vector correspondiente y escribir cada objeto
-    cout << "La informacion ha sido guardada en " << nombre_archivo << endl;
-    ar.close();
-}
+void Curiosity::simular_comandos(vector<string>& args) {
+    if (args.size() == 3) {
+        bool verCor = true;
 
-void Curiosity::simular_comandos(const string& coordX, const string& coordY) {
-    if (!verificador(coordX, 1) || !verificador(coordY, 1)) {
-        cout << "coordenadas invalidas" << endl;
-        return;
+        if (!verificador(args[1], 1)) verCor = false;
+        if (!verificador(args[2], 1)) verCor = false;
+
+        if (!verCor) {
+            cout << "coordenadas invalidas" << endl;
+        } else {
+            cout << "La simulacion de los comandos, a partir de la posicion (" << args[1] << ", " << args[2]
+                 << "), deja al robot en la nueva posicion (nuevoX, nuevoY)." << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        simularComandosA();
     }
-    // TODO: recorrer vector<Comando> y calcular posicion final
-    cout << "La simulacion, a partir de (" << coordX << ", " << coordY
-         << "), deja al robot en la nueva posicion (nuevoX, nuevoY)." << endl;
 }
 
 void Curiosity::ubicar_elementos() {
-    // TODO: insertar elementos del vector en estructura jerarquica
-    cout << "Los elementos han sido procesados exitosamente" << endl;
+    string nombre = "ejemplo";
+    ifstream arElementos((nombre + ".txt"), ios::ate);
+
+    if (arElementos.is_open()) {
+        if (arElementos.tellg() == 0) {
+            cout << nombre << " no contiene elementos." << endl;
+        } else {
+            arElementos.seekg(0, ios::beg);
+            bool verElem = true;
+            if (verElem) cout << "Los elementos han sido procesados exitosamente" << endl;
+            else cout << "Los siguientes elementos no pudieron procesarse adecuadamente: ..." << endl;
+            arElementos.close();
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        ubicarElementoA();
+    }
 }
 
-void Curiosity::en_cuadrante(const string& xMin, const string& xMax, const string& yMin, const string& yMax) {
-    if (!verificador(xMin,1) || !verificador(xMax,1) || !verificador(yMin,1) || !verificador(yMax,1)) {
-        cout << "coordenadas invalidas" << endl;
-        return;
+void Curiosity::en_cuadrante(vector<string>& args) {
+    if (args.size() == 5) {
+        bool hayInfo = false;
+
+        if (hayInfo) {
+            cout << "Los elementos no han sido ubicados todavia (con el comando ubicar_elementos)." << endl;
+            return;
+        }
+        if (!verificador(args[1],1) || !verificador(args[2],1) || !verificador(args[3],1) || !verificador(args[4],1)) {
+            cout << "coordenadas invalidas" << endl;
+        } else {
+            if (stoi(args[1]) > stoi(args[2]) || stoi(args[3]) > stoi(args[4])) {
+                cout << "La informacion del cuadrante no corresponde a los datos esperados (x_min, x_max, y_min, y_max)" << endl;
+            } else {
+                cout << "Los elementos ubicados en el cuadrante son: ..." << endl;
+            }
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        enCuadranteA();
     }
-    if (stoi(xMin) > stoi(xMax) || stoi(yMin) > stoi(yMax)) {
-        cout << "La informacion del cuadrante no corresponde a los datos esperados (x_min, x_max, y_min, y_max)" << endl;
-        return;
-    }
-    // TODO: consultar estructura jerarquica
-    cout << "Los elementos ubicados en el cuadrante son: ..." << endl;
 }
 
-void Curiosity::crear_mapa(const string& coeficiente) {
-    if (!verificador(coeficiente, 1)) {
-        cout << "el coeficiente tiene que ser un numero" << endl;
-        return;
+//pendiente a implementacion
+void Curiosity::crear_mapa(vector<string>& args) {
+    if (args.size() == 2) {
+        if (!verificador(args[1], 1)) {
+            cout << "el coeficiente tiene que ser un numero" << endl;
+        } else {
+            string nombre = "ejemplo";
+            ifstream arElementos((nombre + ".txt"), ios::ate);
+
+            if (arElementos.is_open()) {
+                if (arElementos.tellg() == 0) {
+                    cout << nombre << " no contiene elementos." << endl;
+                } else {
+                    arElementos.seekg(0, ios::beg);
+                    float coeficienteC = stof(args[1]);
+                    cout << "El mapa se ha generado exitosamente. Cada elemento tiene n vecinos" << endl;
+                }
+            } else {
+                cout << "La informacion requerida no esta almacenada en memoria" << endl;
+            }
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        crearMapaA();
     }
-    // TODO: construir grafo con vector<Elemento>
-    cout << "El mapa se ha generado exitosamente." << endl;
 }
 
 void Curiosity::ruta_mas_larga() {
-    // TODO: verificar si el mapa fue creado y calcular ruta
-    cout << "El mapa no ha sido generado todavia (con el comando crear_mapa)." << endl;
+    bool hayMapa = false;
+
+    if (!hayMapa) {
+        cout << "El mapa no ha sido generado todavia (con el comando crear_mapa)." << endl;
+    } else {
+        cout << "Los puntos de interes mas alejados entre si son ... y ... La ruta que los conecta tiene una longitud total de ... y pasa por los siguientes elementos: ..." << endl;
+    }
 }
 
-// ============================================================
-//  Utilidades internas
-// ============================================================
+//===============================================
+//funciones obtener argumentos y verificadores
+//=================================================
 
+/*
+ * Tokeniza la entrada separando por espacios.
+ * Generada con ayuda de IA
+ */
+
+/*
+La siguiente funcion fue generada con IA, ya que no teniamos idea de como tokenizar sin utilizar liberias externas
+asi que utilizamos la siguiente promt para generar esta funcion:
+Hola, estoy haciendo un proyecto en C++ donde implemento una terminal. Utilizo std::getline para leer la entrada del usuario, que tiene este formato:
+comando argumento1 argumento2 ... argumentoN
+Necesito una función que tokenice la cadena completa y devuelva cada argumento por separado, usando exclusivamente la biblioteca estándar de C++, sin librerías externas. No puedo usar std::stringstream, ni strtok, ni nada que no sea parte del STL. Solo puedo usar std::string, bucles y contenedores como std::vector.
+*/
+
+//en resumen la funcion parte la entrada por los argumentos (Ejemplo: cargar_comandos, hello.txt )
 vector<string> Curiosity::obtenerArgumentos(const string& entrada) {
     vector<string> args;
-    string actual = "";
+    string argActual = "";
+
     for (char c : entrada) {
         if (c == ' ') {
-            if (!actual.empty()) { args.push_back(actual); actual = ""; }
+            if (argActual != "") {
+                args.push_back(argActual);
+                argActual = "";
+            }
         } else {
-            actual += c;
+            argActual += c;
         }
     }
-    if (!actual.empty()) args.push_back(actual);
+
+    if (argActual != "") args.push_back(argActual);
+
     return args;
 }
 
+/*
+ * Verifica el formato de una cadena:
+ *   1 -> numero flotante (puede ser negativo)   ^-?\d+(\.\d+)?$
+ *   2 -> comentario entre comillas simples ''    '.*'
+ *   3 -> numero positivo                         ^\d+(\.\d+)?$
+ */
+
+/*
+ * La funcion esNumero la dio una Gemini, esto porque se le pidio como verificar que una cadena de caracteres contiene algun digito con caracteres especiales.
+ * La IA respondio que eso se llama "expresiones regulares", a la IA se le enviaron dos prompts, uno en el que dio la funcion esNumero:
+ * como puedo verificar usando caracteres especiales si una cadena tiene algun digito
+ * El segundo prompt fue:
+ * dime que regex me dejaria verificar si un numero es flotante, por ejemplo 3.5
+ *
+bool esNumero(string cadena) {
+    regex patron("^-?\\d+(\\.\\d+)?$");     //^-?\\d+(\\.\\d+)?$     o       ^\\d+(\\.\\d+)?$
+    return regex_match(cadena, patron);     // \\'
+}
+ */
+
+//se verifica el formato de un numero
 bool Curiosity::verificador(const string& cadena, int opcion) {
     switch (opcion) {
-        case 1: { regex p("^-?\\d+(\\.\\d+)?$");  return regex_match(cadena, p); }
-        case 2: { regex p("'.*'");                 return regex_match(cadena, p); }
-        case 3: { regex p("^\\d+(\\.\\d+)?$");     return regex_match(cadena, p); }
+        case 1: { regex patron("^-?\\d+(\\.\\d+)?$"); return regex_match(cadena, patron); }
+        case 2: { regex patron("'.*'");                return regex_match(cadena, patron); }
+        case 3: { regex patron("^\\d+(\\.\\d+)?$");   return regex_match(cadena, patron); }
     }
     return false;
 }
@@ -244,71 +461,88 @@ bool Curiosity::verificador(const string& cadena, int opcion) {
 // ============================================================
 
 void Curiosity::funcionAyuda() {
-    cout << "\n\t\t\tAYUDA\n" << endl;
+    cout << "\n\t\t\tAYUDA SELECCIONADA\n" << endl;
+    cout << "Mostrando los comandos disponibles junto con la sintaxis de cada uno:\n" << endl;
     cout << "- ayuda" << endl;
     cout << "- cargar_comandos <nombre_archivo>" << endl;
     cout << "- cargar_elementos <nombre_archivo>" << endl;
-    cout << "- agregar_movimiento <tipo> <magnitud> <unidad>" << endl;
-    cout << "- agregar_analisis <tipo> <objeto> <comentario>" << endl;
-    cout << "- agregar_elemento <tipo> <tamano> <unidad> <coordX> <coordY>" << endl;
-    cout << "- guardar <tipo> <nombre_archivo>" << endl;
+    cout << "- agregar_movimiento <tipo_mov> <magnitud> <unidad_med>" << endl;
+    cout << "- agregar_analisis <tipo_analisis> <objeto> <comentario>" << endl;
+    cout << "- agregar_elemento <tipo_comp> <tamano> <unidad_med> <coordX> <coordY>" << endl;
+    cout << "- guardar <tipo_archivo> <nombre_archivo>" << endl;
     cout << "- simular_comandos <coordX> <coordY>" << endl;
     cout << "- ubicar_elementos" << endl;
-    cout << "- en_cuadrante <xMin> <xMax> <yMin> <yMax>" << endl;
-    cout << "- crear_mapa <coeficiente>" << endl;
+    cout << "- en_cuadrante <coordX1> <coordX2> <coordY1> <coordY2>" << endl;
+    cout << "- crear_mapa <coeficiente_conectividad>" << endl;
     cout << "- ruta_mas_larga" << endl;
-    cout << "- salir\n" << endl;
+    cout << "- salir" << endl << endl;
 }
 
 void Curiosity::ayudaA() {
-    cout << "\n1. ayuda -> lista de comandos" << endl;
-    cout << "2. ayuda <comando> -> detalle de un comando\n" << endl;
+    cout << "\nComando para pedir ayuda, se puede ejecutar de dos formas:" << endl;
+    cout << "\n 1. ayuda                - muestra la lista de comandos" << endl;
+    cout << "\n 2. ayuda <comando>      - muestra el comando en detalle\n" << endl;
 }
+
 void Curiosity::cargarComandosA() {
-    cout << "\nSintaxis: cargar_comandos <nombre_archivo>" << endl;
-    cout << "Carga comandos de desplazamiento desde el archivo indicado.\n" << endl;
+    cout << "\nSyntaxis del comando: cargar_comandos <nombre_archivo>" << endl;
+    cout << "\n- Descripcion: Carga en memoria los comandos de desplazamiento contenidos en el archivo identificado por nombre_archivo.\n" << endl;
 }
+
 void Curiosity::cargarElementosA() {
-    cout << "\nSintaxis: cargar_elementos <nombre_archivo>" << endl;
-    cout << "Carga puntos de interes desde el archivo indicado.\n" << endl;
+    cout << "\nSyntaxis del comando: cargar_elementos <nombre_archivo>" << endl;
+    cout << "\n- Descripcion: Carga en memoria los datos de puntos de interes o elementos contenidos en el archivo identificado por nombre_archivo.\n" << endl;
 }
+
 void Curiosity::agregarMovimientoA() {
-    cout << "\nSintaxis: agregar_movimiento <tipo> <magnitud> <unidad>" << endl;
-    cout << "Tipos: avanzar, girar | Unidades: cm, dm, m, km\n" << endl;
+    cout << "\nSyntaxis del comando: agregar_movimiento <tipo_mov> <magnitud> <unidad_med>" << endl;
+    cout << "\n- Descripcion: Agrega el comando de movimiento. El movimiento puede ser de dos tipos: avanzar o girar." << endl;
+    cout << "- Tipos de unidades aceptadas: avanzar = cm, dm, m, km  |  girar = grd, rad\n" << endl;
 }
+
 void Curiosity::agregarAnalisisA() {
-    cout << "\nSintaxis: agregar_analisis <tipo> <objeto> <comentario>" << endl;
-    cout << "Tipos: fotografiar, composicion, perforar | Comentario entre ''\n" << endl;
+    cout << "\nSyntaxis del comando: agregar_analisis <tipo_analisis> <objeto> <comentario>" << endl;
+    cout << "\n- Descripcion: Agrega el comando de analisis. Tipos: fotografiar, composicion, perforar." << endl;
+    cout << "- El comentario es opcional y debe estar encerrado entre comillas simples ''\n" << endl;
 }
+
 void Curiosity::agregarElementoA() {
-    cout << "\nSintaxis: agregar_elemento <tipo> <tamano> <unidad> <coordX> <coordY>" << endl;
-    cout << "Tipos: roca, crater, monticulo, duna\n" << endl;
+    cout << "\nSyntaxis del comando: agregar_elemento <tipo_comp> <tamano> <unidad_med> <coordX> <coordY>" << endl;
+    cout << "\n- Descripcion: Agrega el componente o elemento descrito a la lista de puntos de interes del robot." << endl;
+    cout << "- Tipo de componente: roca, crater, monticulo o duna.\n" << endl;
 }
+
 void Curiosity::guardarA() {
-    cout << "\nSintaxis: guardar <tipo> <nombre_archivo>" << endl;
-    cout << "Tipos: comandos, elementos\n" << endl;
+    cout << "\nSyntaxis del comando: guardar <tipo_archivo> <nombre_archivo>" << endl;
+    cout << "\n- Descripcion: Guarda en el archivo la informacion solicitada. Tipos: comandos, elementos.\n" << endl;
 }
+
 void Curiosity::simularComandosA() {
-    cout << "\nSintaxis: simular_comandos <coordX> <coordY>" << endl;
-    cout << "Simula el resultado de los comandos desde la posicion dada.\n" << endl;
+    cout << "\nSyntaxis del comando: simular_comandos <coordX> <coordY>" << endl;
+    cout << "\n- Descripcion: Permite simular el resultado de los comandos de movimiento que se enviaran al robot." << endl;
+    cout << "- El Curiosity inicia orientado hacia la derecha del eje x. Angulos positivos = sentido antihorario, negativos = horario.\n" << endl;
 }
+
 void Curiosity::ubicarElementoA() {
-    cout << "\nSintaxis: ubicar_elementos" << endl;
-    cout << "Ubica los elementos en una estructura jerarquica.\n" << endl;
+    cout << "\nSyntaxis del comando: ubicar_elementos" << endl;
+    cout << "\n- Descripcion: Usa la informacion de puntos de interes almacenada en memoria para ubicarlos en una estructura jerarquica.\n" << endl;
 }
+
 void Curiosity::enCuadranteA() {
-    cout << "\nSintaxis: en_cuadrante <xMin> <xMax> <yMin> <yMax>" << endl;
-    cout << "Lista elementos dentro del cuadrante indicado.\n" << endl;
+    cout << "\nSyntaxis del comando: en_cuadrante <coordX1> <coordX2> <coordY1> <coordY2>" << endl;
+    cout << "\n- Descripcion: Retorna la lista de elementos dentro del cuadrante geografico indicado.\n" << endl;
 }
+
 void Curiosity::crearMapaA() {
-    cout << "\nSintaxis: crear_mapa <coeficiente_conectividad>" << endl;
-    cout << "Conecta los elementos en un mapa segun el coeficiente dado.\n" << endl;
+    cout << "\nSyntaxis del comando: crear_mapa <coeficiente_conectividad>" << endl;
+    cout << "\n- Descripcion: Ubica los puntos de interes en una estructura no lineal y los conecta segun el coeficiente dado.\n" << endl;
 }
+
 void Curiosity::rutaMasLargaA() {
-    cout << "\nSintaxis: ruta_mas_larga" << endl;
-    cout << "Identifica los dos puntos mas alejados en el mapa.\n" << endl;
+    cout << "\nSyntaxis del comando: ruta_mas_larga" << endl;
+    cout << "\n- Descripcion: Identifica los dos componentes mas alejados entre si segun las conexiones del mapa.\n" << endl;
 }
+
 void Curiosity::salirA() {
-    cout << "\nSintaxis: salir" << endl;
-    cout << "Termina la ejecucion del programa.\n" << endl;
+    cout << "\nComando para salir del programa.\n" << endl;
 }

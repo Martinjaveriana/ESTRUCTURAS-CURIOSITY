@@ -17,11 +17,12 @@ int main() {
         cout << "$ ";
         getline(cin, entrada);
 
+        //se hacen los casos para salida y para cuando la entrada esta vacia
         if (entrada.empty()) continue;
         if (entrada == "salir") { ejecutando = false; continue; }
 
         // Curiosity se encarga de todo lo demas
-        curiosity.procesar(entrada);
+        curiosity.procesar(entrada); //se le envia todo al curiosity
     }
 
     return 0;
