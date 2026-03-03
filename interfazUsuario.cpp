@@ -3,6 +3,7 @@
 //
 
 #include "Curiosity.h"
+#include "Elemento.h"
 #include <iostream>
 #include <string>
 

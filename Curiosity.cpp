@@ -294,6 +294,7 @@ void Curiosity::agregar_elemento(vector<string>& args) {
             cout << "La informacion del elemento no corresponde a los datos esperados (tipo, tamano, unidad, x, y)" << endl;
         } else {
             cout << "El elemento ha sido agregado exitosamente" << endl;
+            elementos_C.push_back(Elemento(args[1], stod(args[2]), args[3], stof(args[4]), stof(args[5])));
         }
     } else {
         cout << "Error: numero de parametros incorrecto" << endl;

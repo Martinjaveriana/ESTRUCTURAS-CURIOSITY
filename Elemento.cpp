@@ -26,11 +26,11 @@ string Elemento::obtenerTipo_comp() {
     return tipo_comp;
 }
 
-float Elemento::obtenerTamano() {
+double Elemento::obtenerTamano() {
     return tamano;
 }
 
-string Elemento::obtenerUnidad_medida() {
+string Elemento::obtenerUnidad_med() {
     return unidad_med;
 }
 
@@ -52,7 +52,7 @@ void Elemento::fijarTipo_comp(string n_tipo) {
     tipo_comp = n_tipo;
 }
 
-void Elemento::fijarTamano(string n_tamano) {
+void Elemento::fijarTamano(double n_tamano) {
     tamano = n_tamano;
 }
 
