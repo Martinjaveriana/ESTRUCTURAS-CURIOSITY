@@ -63,7 +63,7 @@ void Curiosity::procesar(const string& entrada) {
         else if (argumentos[0] == "simular_comandos") {
             cout << "Error: numero de parametros incorrecto" << endl; simularComandosA();
         }
-        else if (argumentos[0] == "ubicar_elemento") {
+        else if (argumentos[0] == "ubicar_elementos") {
             cout << "Error: numero de parametros incorrecto" << endl; ubicarElementoA();
         }
         else if (argumentos[0] == "en_cuadrante") {
@@ -122,9 +122,11 @@ void Curiosity::procesar(const string& entrada) {
             else if (argumentos[1] == "salir") {
                 salirA();
             }
+/*
             else {
                 cout << "Error: comando no existente" << endl;
             }
+*/
         }
         else {
             cout << endl << "Error: numero de parametros incorrecto" << endl;
@@ -134,9 +136,34 @@ void Curiosity::procesar(const string& entrada) {
     }
 
 
+	if(argumentos.size() > 1) {
+		if(argumentos[0] == "salir") {
+			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
+			cout<<"Enviar la palabra 'salida' para salir"<<endl<<endl;
+		}
+		else if (argumentos[0] == "ayuda") {
+			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
+		    cout << "\nComando para pedir ayuda, se puede ejecutar de dos formas:" << endl;
+    		cout << "\n 1. ayuda                - muestra la lista de comandos" << endl;
+    		cout << "\n 2. ayuda <comando>      - muestra el comando en detalle\n" << endl;
+		}
+	    else if (argumentos[0] == "ruta_mas_larga") {
+			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
+			rutaMasLargaA();
+		}
+
+		else if (argumentos[0] == "ubicar_elementos") { //CORREGIR (REVISAR PARAMETROS/SALIDAS)
+			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
+			ubicarElementoA();
+		}
+
+		else cout << "Error: comando no existente" << endl;
+	}
+
 
     //comandos con argumentos
     //si no se envia un comando con un argumento y
+	//descomentar al momento de hacerlo
     else {
         if (argumentos[0] == "cargar_comandos") {
             cargar_comandos(argumentos);
@@ -165,9 +192,9 @@ void Curiosity::procesar(const string& entrada) {
         else if (argumentos[0] == "crear_mapa") {
             crear_mapa(argumentos);
         }
-        else {
+        /*else {
             cout << "Error: comando no existente" << endl;
-        }
+        }*/
     }
 }
 
@@ -317,6 +344,9 @@ void Curiosity::simular_comandos(vector<string>& args) {
     }
 }
 
+//*********************
+//REVISAR
+//*********************
 void Curiosity::ubicar_elementos() {
     string nombre = "ejemplo";
     ifstream arElementos((nombre + ".txt"), ios::ate);
@@ -391,7 +421,7 @@ void Curiosity::ruta_mas_larga() {
     bool hayMapa = false;
 
     if (!hayMapa) {
-        cout << "El mapa no ha sido generado todavia (con el comando crear_mapa)." << endl;
+        cout <<endl<< "El mapa no ha sido generado todavia (con el comando crear_mapa)." << endl<<endl;
     } else {
         cout << "Los puntos de interes mas alejados entre si son ... y ... La ruta que los conecta tiene una longitud total de ... y pasa por los siguientes elementos: ..." << endl;
     }
