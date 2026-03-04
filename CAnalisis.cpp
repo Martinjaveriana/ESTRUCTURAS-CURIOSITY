@@ -4,6 +4,9 @@
 
 #include "CAnalisis.h"
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <regex>
 
 CAnalisis(string nTipoAn, string nObj, string nCom) {
     tipo_analisis = nTipoAn;

@@ -174,7 +174,7 @@ void Curiosity::procesar(const string& entrada) {
             agregar_movimiento(argumentos);
         }
         else if (argumentos[0] == "agregar_analisis") {
-            agregar_analisis(argumentos);
+            comando.agregar_analisis(argumentos);
         }
         else if (argumentos[0] == "agregar_elemento") {
             agregar_elemento(argumentos);
@@ -191,9 +191,9 @@ void Curiosity::procesar(const string& entrada) {
         else if (argumentos[0] == "crear_mapa") {
             crear_mapa(argumentos);
         }
-        /*else {
+        else {
             cout << "Error: comando no existente" << endl;
-        }*/
+        }
     }
 }
 
@@ -319,6 +319,7 @@ void Curiosity::agregar_movimiento(vector<string>& args) {
     }
 }
 
+/*
 void Curiosity::agregar_analisis(vector<string>& args) {
     if (args.size() == 4) {
         bool verAna = true, verCom = true;
@@ -336,6 +337,7 @@ void Curiosity::agregar_analisis(vector<string>& args) {
         agregarAnalisisA();
     }
 }
+*/
 
 void Curiosity::agregar_elemento(vector<string>& args) {
     if (args.size() == 6) {

@@ -7,8 +7,10 @@
 
 #include "CAnalisis.h"
 #include "CMovimiento.h"
+#include "CAnalisis.h"
 #include <queue>
 #include <vector>
+
 
 using namespace std;
 
@@ -37,6 +39,9 @@ public:
 	void set_CAnalisis(vector<CAnalisis> comandos_an_n);
 	void set_CMovimiento(vector<CMovimiento> comandos_mo_n);
 
+	//Metodos
+	void agregar_analisis(vector<string>& args);
+	bool verificador(const string& cadena, int opcion);
 
     //void fijComAn(const queue<CAnalisis>& nComAn);
     //void fijComMov(const queue<CMovimiento>& nComMov);

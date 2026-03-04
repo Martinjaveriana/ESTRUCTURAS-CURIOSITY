@@ -4,6 +4,9 @@
 
 #include "CMovimiento.h"
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <regex>
 
 CMovimiento::CMovimiento(string nTipoMov, float nMag, string nUni) {
     tipo_mov = nTipoMov;

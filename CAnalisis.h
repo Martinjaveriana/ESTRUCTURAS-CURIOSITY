@@ -6,6 +6,8 @@
 #define INTERFAZ_DE_USUARIO_CANALISIS_H
 #include <string>
 
+using namespace std;
+
 
 class CAnalisis {
 private:
