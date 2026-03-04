@@ -9,15 +9,32 @@
 using namespace std;
 
 class Comandos {
-protected:
+private:
     queue<CAnalisis> comandos_analisis;
     queue<CMovimiento> comandos_movimiento;
 public:
+    //Contructor
     Comandos(queue<CAnalisis> nComAn, queue<CMovimiento> nComMov);
-    queue<CAnalisis> obComAn();
-    void fijComAn(queue<CAnalisis> nComAn);
-    queue<CMovimiento> obComMov();
-    void fijComMov(queue<CMovimiento> nComMov);
+
+    //Getters
+
+    const queue<CMovimiento> obComMov() const;
+    const queue<CAnalisis> obComAn() const;
+
+
+    //Setters
+
+
+    void fijComAn(const queue<CAnalisis>& nComAn);
+    void fijComMov(const queue<CMovimiento>& nComMov);
+
+
+
+
+
+
+
+
 };
 
 

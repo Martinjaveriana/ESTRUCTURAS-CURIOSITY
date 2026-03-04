@@ -11,9 +11,8 @@ using namespace std;
 
 //  Constructor
 
-Curiosity::Curiosity() {
+Curiosity::Curiosity(){}
     // agregar el resto de las clases/atributos que tenga el curiosity
-}
 
 //=============================================
 //  Metodo principal —> el que llama el main
@@ -134,7 +133,7 @@ void Curiosity::procesar(const string& entrada) {
     }
 
 
-	else if(argumentos.size() > 1) {
+	else if(argumentos.size() > 1 && argumentos.size() < 3) {
 		if(argumentos[0] == "salir") {
 			cout<<endl<<"Error: numero de parametros incorrecto"<<endl;
 			cout<<"Enviar la palabra 'salida' para salir"<<endl<<endl;
