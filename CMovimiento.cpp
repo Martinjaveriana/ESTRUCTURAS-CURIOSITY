@@ -8,6 +8,8 @@
 #include <fstream>
 #include <regex>
 
+using namespace std;
+
 CMovimiento::CMovimiento(string nTipoMov, float nMag, string nUni) {
     tipo_mov = nTipoMov;
     mag = nMag;

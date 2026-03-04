@@ -42,6 +42,7 @@ public:
 	//Metodos
 	void agregar_analisis(vector<string>& args);
 	bool verificador(const string& cadena, int opcion);
+	string comentario(const vector<string>& cadena);
 
     //void fijComAn(const queue<CAnalisis>& nComAn);
     //void fijComMov(const queue<CMovimiento>& nComMov);

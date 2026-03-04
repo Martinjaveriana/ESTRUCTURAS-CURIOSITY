@@ -35,18 +35,19 @@ Comando::Comando() {
 	//Metodos
 
 	void Comando::agregar_analisis(vector<string>& args) {
-    if (args.size() == 3 || args.size() == 4) {
+    if (args.size() >= 3) {
         bool verAna = true, verCom = true, verObj = true;
 
         if (args[1] != "fotografiar" && args[1] != "composicion" && args[1] != "perforar") verAna = false;
 		if (args.size() == 3) {
 		}
-        else if (!verificador(args[3], 2)) verCom = false;
+        else if (!verificador(args[3], 2) && !verificador(args[args.size()-1],3)) verCom = false;
 
         if (!verAna || !verCom || !verObj) {
             cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
         } else {
-			if(args.size() == 4) {comandos_analisis.push_back(CAnalisis(args[1], args[2], args[3]));}
+			string temp;
+			if(args.size() >= 4) {comandos_analisis.push_back(CAnalisis(args[1], args[2], comentario(args)));}
 			else {comandos_analisis.push_back(CAnalisis(args[1], args[2], "sin comentario"));}
 			cout << "El comando de analisis ha sido agregado exitosamente" << endl;
         }
@@ -61,8 +62,16 @@ Comando::Comando() {
 	bool Comando::verificador(const string& cadena, int opcion) {
     switch (opcion) {
         case 1: { regex patron("^-?\\d+(\\.\\d+)?$"); return regex_match(cadena, patron); }
-        case 2: { regex patron("'.*'");                return regex_match(cadena, patron); }
-        case 3: { regex patron("^\\d+(\\.\\d+)?$");   return regex_match(cadena, patron); }
+        case 2: { regex patron("'.*");                return regex_match(cadena, patron); }
+        case 3: { regex patron(".*'");                return regex_match(cadena, patron); }
     }
     return false;
+	}
+
+	string Comando::comentario(const vector<string>& args){
+		string temp = "";
+		for(int i = 3; i < args.size(); i ++) {
+			temp = temp + args[i] + " ";
+		}
+		return temp;
 	}

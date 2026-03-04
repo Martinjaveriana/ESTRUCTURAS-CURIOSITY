@@ -6,6 +6,8 @@
 #define INTERFAZ_DE_USUARIO_CMOVIMIENTO_H
 #include <string>
 
+using namespace std;
+
 class CMovimiento {
 private:
     string tipo_mov;
