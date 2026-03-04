@@ -223,7 +223,7 @@ void Curiosity::cargar_comandos(vector<string>& args) {
 }
 
 //=======================
-//REPORTAR ORIGEN
+//REPORTAR ORIGEN PENDIENTE!!!!!!!!!!!!
 //=======================
 /*
 
@@ -571,6 +571,7 @@ void Curiosity::funcionAyuda() {
     cout << "crear_mapa <coeficiente_conectividad>" << endl;
     cout << "ruta_mas_larga" << endl;
     cout << "salir" << endl << endl;
+	cout << "cuando vaya a ingresar el nombre del archivo, no incluya el .txt, solo el nombre del archivo." << endl<<endl;
 }
 
 void Curiosity::ayudaA() {
