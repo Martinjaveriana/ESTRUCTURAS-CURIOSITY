@@ -154,6 +154,10 @@ void Curiosity::procesar(const string& entrada) {
 			ubicarElementoA();
 		}
 
+        else if (argumentos[0] == "cargar_elementos") {
+            cargar_elementos(argumentos);
+        }
+
 		else cout << "Error: comando no existente" << endl;
 	}
 
@@ -165,9 +169,6 @@ void Curiosity::procesar(const string& entrada) {
     else {
         if (argumentos[0] == "cargar_comandos") {
             cargar_comandos(argumentos);
-        }
-        else if (argumentos[0] == "cargar_elementos") {
-            cargar_elementos(argumentos);
         }
         else if (argumentos[0] == "agregar_movimiento") {
             agregar_movimiento(argumentos);
@@ -221,7 +222,12 @@ void Curiosity::cargar_comandos(vector<string>& args) {
     }
 }
 
-void Curiosity::cargar_elementos(vector<string>& args) {
+//=======================
+//REPORTAR ORIGEN
+//=======================
+/*
+
+ayudame a cambiar esta funcion para que lea un archivo y cree los elementos que se leyeron, sobreescribindo el vector ya existente void Curiosity::cargar_elementos(vector<string>& args) {
     if (args.size() == 2) {
         ifstream arElementos((args[1] + ".txt"), ios::ate);
         int nElementos = 0;
@@ -242,6 +248,57 @@ void Curiosity::cargar_elementos(vector<string>& args) {
         cargarElementosA();
     }
 }
+
+*/
+
+void Curiosity::cargar_elementos(vector<string>& args) {
+    if (args.size() == 2) {
+        ifstream arElementos((args[1] + ".txt"), ios::ate);
+
+        if (arElementos.is_open()) {
+            if (arElementos.tellg() == 0) {
+                cout << args[1] << " no contiene elementos." << endl;
+            } else {
+                arElementos.seekg(0, ios::beg);
+
+                // sobreescribir el vector existente
+                elementos_C.clear();
+
+                string tipo, unidad;
+                double tamano;
+                float x, y;
+
+                string linea;
+
+                while (getline(arElementos, linea)) {
+                    if (linea.empty()) continue; // saltar lineas vacias
+
+                    // reutilizamos obtenerArgumentos para parsear la linea
+                    vector<string> argElemento = obtenerArgumentos(linea);
+
+                    if (argElemento.size() != 5) {
+                        cout << "Linea invalida, se omite: " << linea << endl;
+                        continue; // saltar esta linea y seguir con la siguiente
+                    }
+
+                    // le agregamos el nombre del comando al frente
+                    argElemento.insert(argElemento.begin(), "agregar_elemento");
+                    agregar_elemento(argElemento);
+                }
+
+                cout << elementos_C.size() << " elementos cargados correctamente desde " << args[1] << endl;
+                arElementos.close();
+            }
+        } else {
+            cout << args[1] << " no se encuentra o no puede leerse." << endl;
+        }
+    } else {
+        cout << "Error: numero de parametros incorrecto" << endl;
+        cargarElementosA();
+    }
+}
+
+
 
 void Curiosity::agregar_movimiento(vector<string>& args) {
     if (args.size() == 4) {

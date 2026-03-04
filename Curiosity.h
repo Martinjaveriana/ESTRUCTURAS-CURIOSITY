@@ -18,7 +18,7 @@ class Curiosity {
 
 private:
     vector<Elemento> elementos_C;
-    //vector<Comando> comandos;
+    //Comando comandos;
 
         float PosX;
         float PosY;
@@ -40,14 +40,14 @@ public:
 
 //Getters
     const vector<Elemento>& obElem() const;
-    //const vector<Comando>& obComS() const;
+    //const Comando& obComS() const;
     const  float& obPosX() const;
     const  float& obPosY() const;
 
 // Setters de las listas de elementos y comandos
 
     void fijElem(const vector<Elemento>& nElem);
-    //void fijComS(const vector<Comando>& nComS);
+    //void fijComS(const Comando comandos& nComS);
     void fijPosX(float n_posX);
     void fijPosY(float n_posY);
 
