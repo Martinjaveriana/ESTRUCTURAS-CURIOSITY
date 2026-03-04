@@ -8,32 +8,32 @@
 #include <fstream>
 #include <regex>
 
-CAnalisis(string nTipoAn, string nObj, string nCom) {
+CAnalisis::CAnalisis(string nTipoAn, string nObj, string nCom) {
     tipo_analisis = nTipoAn;
     objeto = nObj;
     comentario = nCom;
 }
 
-string obTipoAn() {
+string CAnalisis::obTipoAn() {
     return tipo_analisis;
 }
 
-void fijTipoAn(string nTipoAn) {
+void CAnalisis::fijTipoAn(string nTipoAn) {
     tipo_analisis = nTipoAn;
 }
 
-string obObj() {
+string CAnalisis::obObj() {
     return objeto;
 }
 
-void fijObj(string nObj) {
+void CAnalisis::fijObj(string nObj) {
     objeto = nObj;
 }
 
-string obCom() {
+string CAnalisis::obCom() {
     return comentario;
 }
 
-void fijCom(string nCom) {
+void CAnalisis::fijCom(string nCom) {
     comentario = nCom;
 }

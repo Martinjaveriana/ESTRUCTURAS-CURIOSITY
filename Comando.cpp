@@ -46,7 +46,9 @@ Comando::Comando() {
         if (!verAna || !verCom || !verObj) {
             cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
         } else {
-            cout << "El comando de analisis ha sido agregado exitosamente" << endl;
+			if(args.size() == 4) {comandos_analisis.push_back(CAnalisis(args[1], args[2], args[3]));}
+			else {comandos_analisis.push_back(CAnalisis(args[1], args[2], "sin comentario"));}
+			cout << "El comando de analisis ha sido agregado exitosamente" << endl;
         }
     } else {
         cout << "Error: numero de parametros incorrecto" << endl;
