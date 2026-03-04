@@ -2,27 +2,32 @@
 // Created by martin-sanmiguel on 3/3/26.
 //
 #include "Comandos.h"
-#include <queue>
+#include <vector>
 
 using namespace std;
 
-Comandos(queue<CAnalisis> nComAn, queue<CMovimiento> nComMov) {
-    comandos_analisis = nComAn;
-    comandos_analisis = nComAn;
+//constructor vacio, se inicializan los vectores solos
+Comando() {
 }
 
-queue<CAnalisis> obComAn() {
+
+
+
+
+/*
+vector<CAnalisis> obComAn() {
     return comandos_analisis;
 }
 
-void fijComAn(queue<CAnalisis> nComAn) {
+void fijComAn(vector<CAnalisis> nComAn) {
     comandos_analisis = nComAn;
 }
 
-queue<CMovimiento> obComMov() {
+vector<CMovimiento> obComMov() {
     return comandos_movimiento;
 }
 
-void fijComMov(queue<CMovimiento> nComMov) {
+void fijComMov(vector<CMovimiento> nComMov) {
     comandos_analisis = nComAn;
 };
+*/

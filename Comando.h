@@ -5,11 +5,11 @@
 #ifndef INTERFAZ_DE_USUARIO_COMANDOS_H
 #define INTERFAZ_DE_USUARIO_COMANDOS_H
 #include <queue>
-#include <list>
+#include <vector>
 
 using namespace std;
 
-class Comandos {
+class Comando{
 
     //PENDIENTE CAMBIAR LOS STRINGS POR LOS TIPOS DE DATO QUE SON :(
 
@@ -17,15 +17,16 @@ private:
     //queue<CAnalisis> comandos_analisis;
     //queue<CMovimiento> comandos_movimiento;
 
-    List<string CAnalisis> comandos_analisis;
-    List<string CMovimiento> comandos_movimiento;
+    vector<string> comandos_analisis;
+    vector<string> comandos_movimiento;
 
 public:
     //Contructor
+	Comando();
 
     //Comandos(queue<CAnalisis> nComAn, queue<CMovimiento> nComMov);
 
-    Comandos(String Comandos_A, String Comandos_M);
+    //Comandos(String Comandos_A, String Comandos_M);
 
     //Getters
 
@@ -38,14 +39,6 @@ public:
 
     //void fijComAn(const queue<CAnalisis>& nComAn);
     //void fijComMov(const queue<CMovimiento>& nComMov);
-
-
-
-
-
-
-
-
 };
 
 

@@ -9,7 +9,7 @@
 #include <string>
 
 #include "Elemento.h"
-//#include "Comando.h"
+#include "Comando.h"
 //#include "CAnalisis.h"
 //#include "CMovimiento.h"
 
@@ -20,8 +20,8 @@ private:
     vector<Elemento> elementos_C;
     //Comando comandos;
 
-        float PosX;
-        float PosY;
+        //float PosX;
+        //float PosY;
 public:
     Curiosity();
 
@@ -41,15 +41,13 @@ public:
 //Getters
     const vector<Elemento>& obElem() const;
     //const Comando& obComS() const;
-    const  float& obPosX() const;
-    const  float& obPosY() const;
+
 
 // Setters de las listas de elementos y comandos
 
     void fijElem(const vector<Elemento>& nElem);
     //void fijComS(const Comando comandos& nComS);
-    void fijPosX(float n_posX);
-    void fijPosY(float n_posY);
+
 
 
     //comandos del doc
