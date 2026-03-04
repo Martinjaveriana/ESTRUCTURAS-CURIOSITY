@@ -4,6 +4,9 @@
 
 #ifndef INTERFAZ_DE_USUARIO_COMANDOS_H
 #define INTERFAZ_DE_USUARIO_COMANDOS_H
+
+#include "CAnalisis.h"
+#include "CMovimiento.h"
 #include <queue>
 #include <vector>
 
@@ -17,24 +20,22 @@ private:
     //queue<CAnalisis> comandos_analisis;
     //queue<CMovimiento> comandos_movimiento;
 
-    vector<string> comandos_analisis;
-    vector<string> comandos_movimiento;
+    vector<CAnalisis> comandos_analisis;
+    vector<CMovimiento> comandos_movimiento;
 
 public:
     //Contructor
 	Comando();
 
-    //Comandos(queue<CAnalisis> nComAn, queue<CMovimiento> nComMov);
-
-    //Comandos(String Comandos_A, String Comandos_M);
-
     //Getters
 
-    //const queue<CMovimiento> obComMov() const;
-    //const queue<CAnalisis> obComAn() const;
-
+    vector<CAnalisis> get_CAnalisis();
+	vector<CMovimiento> get_Movimientos();
 
     //Setters
+
+	void set_CAnalisis(vector<CAnalisis> comandos_an_n);
+	void set_CMovimiento(vector<CMovimiento> comandos_mo_n);
 
 
     //void fijComAn(const queue<CAnalisis>& nComAn);

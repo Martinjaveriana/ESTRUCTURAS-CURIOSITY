@@ -7,7 +7,7 @@
 #include <string>
 
 class CMovimiento {
-protected:
+private:
     string tipo_mov;
     float mag;
     string unidad;

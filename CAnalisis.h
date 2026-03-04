@@ -8,7 +8,7 @@
 
 
 class CAnalisis {
-protected:
+private:
     string tipo_analisis;
     string objeto;
     string comentario;

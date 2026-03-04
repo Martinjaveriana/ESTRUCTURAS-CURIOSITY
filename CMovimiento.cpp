@@ -5,32 +5,32 @@
 #include "CMovimiento.h"
 #include <string>
 
-CMovimiento(string nTipoMov, float nMag, string nUni) {
+CMovimiento::CMovimiento(string nTipoMov, float nMag, string nUni) {
     tipo_mov = nTipoMov;
     mag = nMag;
     unidad = nUni;
 }
 
-string obTipoMov() {
+string CMovimiento::obTipoMov() {
     return tipo_mov;
 }
 
-void fijTipoMov(string nTipoMov) {
+void CMovimiento::fijTipoMov(string nTipoMov) {
     tipo_mov = nTipoMov;
 }
 
-float getMag() {
+float CMovimiento::getMag() {
     return mag;
 }
 
-void fijMag(float nMag) {
+void CMovimiento::fijMag(float nMag) {
     mag = nMag;
 }
 
-string getUni() {
+string CMovimiento::getUni() {
     return unidad;
 }
 
-void fijUni(string nUni) {
+void CMovimiento::fijUni(string nUni) {
     unidad = nUni;
 }
