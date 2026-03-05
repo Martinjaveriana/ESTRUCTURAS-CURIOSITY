@@ -36,17 +36,14 @@ Comando::Comando() {
 
 	void Comando::agregar_analisis(vector<string>& args) {
     if (args.size() >= 3) {
-        bool verAna = true, verCom = true, verObj = true;
+        bool verAna = true, verCom = true;
 
         if (args[1] != "fotografiar" && args[1] != "composicion" && args[1] != "perforar") verAna = false;
-		if (args.size() == 3) {
-		}
-        else if (!verificador(args[3], 2) && !verificador(args[args.size()-1],3)) verCom = false;
+		if (args.size()>3 && !verificador(args[3], 2) && !verificador(args[args.size()-1],3)) verCom = false;
 
-        if (!verAna || !verCom || !verObj) {
+        if (!verAna || !verCom) {
             cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
         } else {
-			string temp;
 			if(args.size() >= 4) {comandos_analisis.push_back(CAnalisis(args[1], args[2], comentario(args)));}
 			else {comandos_analisis.push_back(CAnalisis(args[1], args[2], "sin comentario"));}
 			cout << "El comando de analisis ha sido agregado exitosamente" << endl;
