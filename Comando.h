@@ -21,7 +21,6 @@ class Comando{
 private:
     //queue<CAnalisis> comandos_analisis;
     //queue<CMovimiento> comandos_movimiento;
-
     vector<CAnalisis> comandos_analisis;
     vector<CMovimiento> comandos_movimiento;
 
@@ -30,19 +29,19 @@ public:
 	Comando();
 
     //Getters
+    const vector<CAnalisis>& obComAn() const;
 
-    vector<CAnalisis> get_CAnalisis();
-	vector<CMovimiento> get_Movimientos();
+	const vector<CMovimiento>& obComMov() const;
 
     //Setters
-
-	void set_CAnalisis(vector<CAnalisis> comandos_an_n);
-	void set_CMovimiento(vector<CMovimiento> comandos_mo_n);
+	void set_CAnalisis(const vector<CAnalisis>& comandos_an_n);
+	void set_CMovimiento(const vector<CMovimiento>& comandos_mo_n);
 
 	//Metodos
-	void agregar_analisis(vector<string>& args);
-	bool verificador(const string& cadena, int opcion);
-	string comentario(const vector<string>& cadena);
+	void agregarAnalisis(const vector<string>& args, string comentario);
+	void agregarMovimiento(const vector<string>& args);
+    void limpiarAnalisis();
+    void limpiarMovimiento();
 
     //void fijComAn(const queue<CAnalisis>& nComAn);
     //void fijComMov(const queue<CMovimiento>& nComMov);

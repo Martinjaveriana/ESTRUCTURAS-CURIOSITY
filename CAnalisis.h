@@ -16,12 +16,12 @@ private:
     string comentario;
 public:
     CAnalisis(string nTipoAn, string nObj, string nCom);
-    string obTipoAn();
-    void fijTipoAn(string nTipoAn);
-    string obObj();
-    void fijObj(string nObj);
-    string obCom();
-    void fijCom(string nCom);
+    const string& obTipoAn() const;
+    void fijTipoAn(const string& nTipoAn);
+    const string& obObj() const;
+    void fijObj(const string& nObj);
+    const string& obCom() const;
+    void fijCom(const string& nCom);
 };
 
 

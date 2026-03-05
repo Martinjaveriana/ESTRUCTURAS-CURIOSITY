@@ -16,15 +16,15 @@ CMovimiento::CMovimiento(string nTipoMov, float nMag, string nUni) {
     unidad = nUni;
 }
 
-string CMovimiento::obTipoMov() {
+const string& CMovimiento::obTipoMov() const {
     return tipo_mov;
 }
 
-void CMovimiento::fijTipoMov(string nTipoMov) {
+void CMovimiento::fijTipoMov(const string& nTipoMov) {
     tipo_mov = nTipoMov;
 }
 
-float CMovimiento::getMag() {
+float CMovimiento::obMag() const{
     return mag;
 }
 
@@ -32,10 +32,10 @@ void CMovimiento::fijMag(float nMag) {
     mag = nMag;
 }
 
-string CMovimiento::getUni() {
+const string& CMovimiento::obUni() const{
     return unidad;
 }
 
-void CMovimiento::fijUni(string nUni) {
+void CMovimiento::fijUni(const string& nUni) {
     unidad = nUni;
 }

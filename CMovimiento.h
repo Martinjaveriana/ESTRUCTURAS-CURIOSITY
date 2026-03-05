@@ -15,12 +15,12 @@ private:
     string unidad;
 public:
     CMovimiento(string nTipoMov, float nMag, string nUni);
-    string obTipoMov();
-    void fijTipoMov(string nTipoMov);
-    float getMag();
+    const string& obTipoMov() const;
+    void fijTipoMov(const string& nTipoMov);
+    float obMag() const;
     void fijMag(float nMag);
-    string getUni();
-    void fijUni(string nUni);
+    const string& obUni() const;
+    void fijUni(const string& nUni);
 };
 
 

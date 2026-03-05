@@ -19,11 +19,11 @@ public:
     Elemento(const string& n_tipo, double n_tamano, const string& n_unidad, float n_cord_x, float n_cord_y);
 
     //getters
-    const string& obtenerTipo_comp() const;
-    double obtenerTamano();
-    const string& obtenerUnidad() const;
-    float obtenerCord_x();
-    float obtenerCord_y();
+    const string& obTipoEl() const;
+    double obTam() const;
+    const string& obUni() const;
+    float obCoordX() const;
+    float obCoordY() const;
 
     //setters
     void fijarTipo_comp(const string& n_tipo);

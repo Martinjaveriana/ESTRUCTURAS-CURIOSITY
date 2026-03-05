@@ -14,26 +14,26 @@ CAnalisis::CAnalisis(string nTipoAn, string nObj, string nCom) {
     comentario = nCom;
 }
 
-string CAnalisis::obTipoAn() {
+const string& CAnalisis::obTipoAn() const{
     return tipo_analisis;
 }
 
-void CAnalisis::fijTipoAn(string nTipoAn) {
+void CAnalisis::fijTipoAn(const string& nTipoAn) {
     tipo_analisis = nTipoAn;
 }
 
-string CAnalisis::obObj() {
+const string& CAnalisis::obObj() const {
     return objeto;
 }
 
-void CAnalisis::fijObj(string nObj) {
+void CAnalisis::fijObj(const string& nObj) {
     objeto = nObj;
 }
 
-string CAnalisis::obCom() {
+const string& CAnalisis::obCom() const{
     return comentario;
 }
 
-void CAnalisis::fijCom(string nCom) {
+void CAnalisis::fijCom(const string& nCom) {
     comentario = nCom;
 }

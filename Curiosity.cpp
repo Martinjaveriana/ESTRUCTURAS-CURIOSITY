@@ -14,6 +14,14 @@ using namespace std;
 Curiosity::Curiosity(){}
     // agregar el resto de las clases/atributos que tenga el curiosity
 
+const vector<Elemento>& Curiosity::obElem() const {
+    return elementos_C;
+}
+
+const Comando& Curiosity::obComS() const {
+    return comandos;
+}
+
 //=============================================
 //  Metodo principal —> el que llama el main
 //=============================================
@@ -75,7 +83,6 @@ void Curiosity::procesar(const string& entrada) {
             cout << "Error: comando no existente" << endl;
         }
     }
-
 
     //comandos ayuda + comando
     //se entra a estos if si el primer argumento es "ayuda"
@@ -158,6 +165,10 @@ void Curiosity::procesar(const string& entrada) {
             cargar_elementos(argumentos);
         }
 
+	    else if (argumentos[0] == "cargar_comandos") {
+            cargar_comandos(argumentos);
+        }
+
 		else cout << "Error: comando no existente" << endl;
 	}
 
@@ -167,14 +178,11 @@ void Curiosity::procesar(const string& entrada) {
 	//descomentar al momento de hacerlo
 	//agregar verificaciones :(
     else {
-        if (argumentos[0] == "cargar_comandos") {
-            cargar_comandos(argumentos);
-        }
-        else if (argumentos[0] == "agregar_movimiento") {
+        if (argumentos[0] == "agregar_movimiento") {
             agregar_movimiento(argumentos);
         }
         else if (argumentos[0] == "agregar_analisis") {
-            comando.agregar_analisis(argumentos);
+            agregar_analisis(argumentos);
         }
         else if (argumentos[0] == "agregar_elemento") {
             agregar_elemento(argumentos);
@@ -201,16 +209,65 @@ void Curiosity::procesar(const string& entrada) {
 
 void Curiosity::cargar_comandos(vector<string>& args) {
     if (args.size() == 2) {
-        ifstream arComandos((args[1] + ".txt"), ios::ate);
+        ifstream arComandos((args[1]), ios::ate);
         int nComandos = 0;
 
         if (arComandos.is_open()) {
             if (arComandos.tellg() == 0) {
                 cout << args[1] << " no contiene comandos." << endl;
             } else {
+
                 arComandos.seekg(0, ios::beg);
-                //leer lineas y agregar al vector<Comando>
-                cout << nComandos << " comandos cargados correctamente desde " << args[1] << endl;
+
+				//limpiar los que estan
+
+				string linea;
+
+				bool limpioA = false;
+				bool limpioM = false;
+
+                while (getline(arComandos, linea)) {
+                    if (linea.empty()) continue; // saltar lineas vacias
+                    // reutilizamos obtenerAnalisis
+					//if es de analisis
+
+					vector<string> argsComandos = obtenerArgumentos(linea);
+
+					if(verificador(argsComandos[0],5)){
+						if(!limpioA){
+							comandos.limpiarAnalisis();
+							limpioA = true;
+						}
+
+						if(linea.empty()) continue;
+
+						if(argsComandos.size() < 2) {
+							cout<<"Linea invalida, se omite: " << linea << endl;
+							continue;
+						}
+
+						argsComandos.insert(argsComandos.begin(), "agregar_analisis");
+                    	agregar_analisis(argsComandos);
+					}
+					else if(verificador(argsComandos[0],6)){
+						if(!limpioM){
+							comandos.limpiarMovimiento();
+							limpioA = true;
+						}
+
+						if(linea.empty()) continue;
+
+						if(argsComandos.size() < 3) {
+							cout<<"Linea invalida, se omite: " << linea << endl;
+							continue;
+						}
+
+						argsComandos.insert(argsComandos.begin(), "agregar_movimiento");
+						agregar_movimiento(argsComandos);
+					}
+                }
+
+                cout << comandos.obComAn().size() + comandos.obComMov().size() << " elementos cargados correctamente desde " << args[1] << endl;
                 arComandos.close();
             }
         } else {
@@ -227,7 +284,8 @@ void Curiosity::cargar_comandos(vector<string>& args) {
 //=======================
 /*
 
-ayudame a cambiar esta funcion para que lea un archivo y cree los elementos que se leyeron, sobreescribindo el vector ya existente void Curiosity::cargar_elementos(vector<string>& args) {
+ayudame a cambiar esta funcion para que lea un archivo y cree los elementos que se leyeron, sobreescribindo el vector ya existente
+void Curiosity::cargar_elementos(vector<string>& args) {
     if (args.size() == 2) {
         ifstream arElementos((args[1] + ".txt"), ios::ate);
         int nElementos = 0;
@@ -253,7 +311,7 @@ ayudame a cambiar esta funcion para que lea un archivo y cree los elementos que 
 
 void Curiosity::cargar_elementos(vector<string>& args) {
     if (args.size() == 2) {
-        ifstream arElementos((args[1] + ".txt"), ios::ate);
+        ifstream arElementos((args[1]), ios::ate);
 
         if (arElementos.is_open()) {
             if (arElementos.tellg() == 0) {
@@ -298,19 +356,20 @@ void Curiosity::cargar_elementos(vector<string>& args) {
     }
 }
 
-
-
 void Curiosity::agregar_movimiento(vector<string>& args) {
     if (args.size() == 4) {
         bool verMov = true, verMag = true, verUni = true;
 
-        if (args[1] != "avanzar" && args[1] != "girar") verMov = false;
+		verMov = verificador(args[1], 6);
+
         if (!verificador(args[2], 1)) verMag = false;
+
         if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km") verUni = false;
 
         if (!verMov || !verMag || !verUni) {
             cout << "La informacion del movimiento no corresponde a los datos esperados (tipo, magnitud, unidad)" << endl;
         } else {
+			comandos.agregarMovimiento(args);
             cout << "El comando de movimiento ha sido agregado exitosamente" << endl;
         }
     } else {
@@ -319,25 +378,33 @@ void Curiosity::agregar_movimiento(vector<string>& args) {
     }
 }
 
-/*
 void Curiosity::agregar_analisis(vector<string>& args) {
-    if (args.size() == 4) {
-        bool verAna = true, verCom = true;
+    bool verAna = true;
+    bool verCom = true;
 
-        if (args[1] != "fotografiar" && args[1] != "composicion" && args[1] != "perforar") verAna = false;
-        if (!verificador(args[3], 2)) verCom = false;
+    if (args.size() >= 3) {
+        //revisa si los parametros son los correctos
+
+        verAna = verificador(args[1], 5);
+
+        if (args.size() > 3 && ( !verificador(args[3],2) && !verificador(args[args.size()-1], 3) ) ) {
+            verCom = false;
+        }
 
         if (!verAna || !verCom) {
-            cout << "La informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)" << endl;
+            cout << "\nLa informacion del analisis no corresponde a los datos esperados (tipo, objeto, comentario)\n" << endl;
+            agregarAnalisisA();
         } else {
-            cout << "El comando de analisis ha sido agregado exitosamente" << endl;
+            if (args.size() > 3 ) {
+				comandos.agregarAnalisis(args, comentario(args));
+			} else {comandos.agregarAnalisis(args, "");}
+            cout << "\nEl comando de analisis ha sido agregado exitosamente\n" << endl;
         }
     } else {
-        cout << "Error: numero de parametros incorrecto" << endl;
+        cout << "\nError: numero de parametros incorrecto\n" << endl;
         agregarAnalisisA();
     }
 }
-*/
 
 void Curiosity::agregar_elemento(vector<string>& args) {
     if (args.size() == 6) {
@@ -346,6 +413,7 @@ void Curiosity::agregar_elemento(vector<string>& args) {
         if (args[1] != "roca" && args[1] != "crater" && args[1] != "monticulo" && args[1] != "duna") verEle = false;
         if (!verificador(args[2], 3)) verTam = false;
         if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km") verUni = false;
+
         if (!verificador(args[4], 1) || !verificador(args[5], 1)) verCor = false;
 
         if (!verEle || !verTam || !verUni || !verCor) {
@@ -367,8 +435,31 @@ void Curiosity::guardar(vector<string>& args) {
         if (args[1] != "comandos" && args[1] != "elementos") verInfo = false;
 
         if (verInfo) {
-            ofstream arAGuardar((args[2] + ".txt"));
+            ofstream arAGuardar((args[2]));
+
             if (arAGuardar.is_open()) {
+				vector<CAnalisis>::const_iterator CAit;
+				vector<CMovimiento>::const_iterator CMIt;
+				vector<Elemento>::const_iterator Eit;
+
+				if(args[1] == "comandos") {
+
+					for(CAit = comandos.obComAn().begin(); CAit != comandos.obComAn().end(); CAit++ ) {
+						arAGuardar << CAit->obTipoAn() << " " << CAit->obObj() << " " << CAit->obCom() << endl;
+					}
+
+					for(CMIt = comandos.obComMov().begin(); CMIt != comandos.obComMov().end(); CMIt++ ) {
+						arAGuardar << CMIt->obTipoMov() << " " << CMIt->obMag() << " " << CMIt->obUni() << endl;
+					}
+
+				} else if(args[1] == "elementos"){
+
+					for(Eit = elementos_C.begin() ; Eit != elementos_C.end(); Eit++ ) {
+						arAGuardar << Eit->obTipoEl() << " " << Eit->obTam() << " " << Eit->obUni() << " " << Eit->obCoordX() << " " << Eit->obCoordY() << endl;
+					}
+
+				}
+
                 cout << "La informacion ha sido guardada en " << args[2] << endl;
                 arAGuardar.close();
             } else {
@@ -385,14 +476,18 @@ void Curiosity::guardar(vector<string>& args) {
 
 void Curiosity::simular_comandos(vector<string>& args) {
     if (args.size() == 3) {
-        bool verCor = true;
+        bool verCorX = true;
+		bool verCorY = true;
 
-        if (!verificador(args[1], 1)) verCor = false;
-        if (!verificador(args[2], 1)) verCor = false;
+        if (!verificador(args[1], 1)) verCorX = false;
+        if (!verificador(args[2], 1)) verCorY = false;
 
-        if (!verCor) {
+        if (!verCorX || !verCorY) {
             cout << "coordenadas invalidas" << endl;
         } else {
+			float nuevoX = 0;
+			float nuevoY = 0;
+
             cout << "La simulacion de los comandos, a partir de la posicion (" << args[1] << ", " << args[2]
                  << "), deja al robot en la nueva posicion (nuevoX, nuevoY)." << endl;
         }
@@ -407,7 +502,7 @@ void Curiosity::simular_comandos(vector<string>& args) {
 //*********************
 void Curiosity::ubicar_elementos() {
     string nombre = "ejemplo";
-    ifstream arElementos((nombre + ".txt"), ios::ate);
+    ifstream arElementos((nombre), ios::ate);
 
     if (arElementos.is_open()) {
         if (arElementos.tellg() == 0) {
@@ -455,7 +550,7 @@ void Curiosity::crear_mapa(vector<string>& args) {
             cout << "el coeficiente tiene que ser un numero" << endl;
         } else {
             string nombre = "ejemplo";
-            ifstream arElementos((nombre + ".txt"), ios::ate);
+            ifstream arElementos((nombre), ios::ate);
 
             if (arElementos.is_open()) {
                 if (arElementos.tellg() == 0) {
@@ -543,14 +638,44 @@ bool esNumero(string cadena) {
 }
  */
 
-//se verifica el formato de un numero
+//verifica
 bool Curiosity::verificador(const string& cadena, int opcion) {
     switch (opcion) {
-        case 1: { regex patron("^-?\\d+(\\.\\d+)?$"); return regex_match(cadena, patron); }
-        case 2: { regex patron("'.*'");                return regex_match(cadena, patron); }
-        case 3: { regex patron("^\\d+(\\.\\d+)?$");   return regex_match(cadena, patron); }
+        case 1: {
+            regex patron("^-?\\d+(\\.\\d+)?$");     //verifica si la cadena es un numero real
+            return regex_match(cadena, patron);
+        }
+        case 2: {
+            regex patron("'.*");     //verifica si la cadena empieza con '
+            return regex_match(cadena, patron);
+        }
+        case 3: {
+            regex patron("^\\d+(\\.\\d+)?$");       //verifica si un numero positivo
+            return regex_match(cadena, patron);
+        }
+        case 4: {
+            regex patron(".*'");     //verifica si la cadena termina con '
+            return regex_match(cadena, patron);
+        }
+		case 5: {
+			if(cadena == "fotografia" || cadena == "perforar" || cadena == "composicion"){return true;}
+			else return false;
+			break;			//verifica si es de analisis
+		}
+		case 6:
+			if(cadena == "avanzar" || cadena == "girar"){return true;}
+			else return false;
+			break; 				//verifica si es de movimiento
     }
     return false;
+}
+
+string Curiosity::comentario(const vector<string>& args){
+    string temp = "";
+    for(int i = 3; i < args.size(); i ++) {
+        temp = temp + args[i] + " ";
+    }
+    return temp;
 }
 
 // ============================================================

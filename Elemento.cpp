@@ -22,23 +22,23 @@ Elemento::Elemento(const string& n_tipo, double n_tamano, const string& n_unidad
 
 
 
-const string& Elemento::obtenerTipo_comp() const{
+const string& Elemento::obTipoEl() const{
     return tipo_comp;
 }
 
-double Elemento::obtenerTamano() {
+double Elemento::obTam() const{
     return tamano;
 }
 
-const string& Elemento::obtenerUnidad() const {
+const string& Elemento::obUni() const {
     return unidad;
 }
 
-float Elemento::obtenerCord_x() {
+float Elemento::obCoordX() const{
     return cord_x;
 }
 
-float Elemento::obtenerCord_y() {
+float Elemento::obCoordY() const{
     return cord_y;
 }
 
