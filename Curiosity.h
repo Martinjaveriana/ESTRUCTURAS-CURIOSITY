@@ -30,6 +30,7 @@ public:
     vector<string> obtenerArgumentos(const string& entrada);
     bool verificador(const string& cadena, int opcion);
 	string comentario(const vector<string>& args);
+    float calcularDistancia(CMovimiento c);
 
 //Getters
     const vector<Elemento>& obElem() const;

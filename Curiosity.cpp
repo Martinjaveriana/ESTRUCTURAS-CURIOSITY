@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <cmath>
+#include <numbers>
 
 using namespace std;
 
@@ -169,6 +171,10 @@ void Curiosity::procesar(const string& entrada) {
             cargar_comandos(argumentos);
         }
 
+	    else if (argumentos[0] == "guardar") {
+
+	    }
+
 		else cout << "Error: comando no existente" << endl;
 	}
 
@@ -210,7 +216,6 @@ void Curiosity::procesar(const string& entrada) {
 void Curiosity::cargar_comandos(vector<string>& args) {
     if (args.size() == 2) {
         ifstream arComandos((args[1]), ios::ate);
-        int nComandos = 0;
 
         if (arComandos.is_open()) {
             if (arComandos.tellg() == 0) {
@@ -233,7 +238,12 @@ void Curiosity::cargar_comandos(vector<string>& args) {
 
 					vector<string> argsComandos = obtenerArgumentos(linea);
 
+                    cout << "primer token: '" << argsComandos[0] << "'" << endl; // DEBUG
+                    cout << "verificador 5: " << verificador(argsComandos[0], 5) << endl; // DEBUG
+                    cout << "verificador 6: " << verificador(argsComandos[0], 6) << endl; // DEBUG
+
 					if(verificador(argsComandos[0],5)){
+
 						if(!limpioA){
 							comandos.limpiarAnalisis();
 							limpioA = true;
@@ -245,14 +255,13 @@ void Curiosity::cargar_comandos(vector<string>& args) {
 							cout<<"Linea invalida, se omite: " << linea << endl;
 							continue;
 						}
-
 						argsComandos.insert(argsComandos.begin(), "agregar_analisis");
                     	agregar_analisis(argsComandos);
 					}
 					else if(verificador(argsComandos[0],6)){
 						if(!limpioM){
 							comandos.limpiarMovimiento();
-							limpioA = true;
+							limpioM = true;
 						}
 
 						if(linea.empty()) continue;
@@ -364,7 +373,7 @@ void Curiosity::agregar_movimiento(vector<string>& args) {
 
         if (!verificador(args[2], 1)) verMag = false;
 
-        if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km") verUni = false;
+        if (args[3] != "cm" && args[3] != "dm" && args[3] != "m" && args[3] != "km" && args[3] != "grd" && args[3] != "rad") verUni = false;
 
         if (!verMov || !verMag || !verUni) {
             cout << "La informacion del movimiento no corresponde a los datos esperados (tipo, magnitud, unidad)" << endl;
@@ -485,16 +494,41 @@ void Curiosity::simular_comandos(vector<string>& args) {
         if (!verCorX || !verCorY) {
             cout << "coordenadas invalidas" << endl;
         } else {
-			float nuevoX = 0;
-			float nuevoY = 0;
+			float x = stof(args[1]);
+			float y = stof(args[2]);
+            float distancia = 0;
+            float angulo = 0;//en radianes
+
+            for (CMovimiento c: comandos.obComMov()) {
+                if (c.obTipoMov() == "avanzar") {
+                    distancia = calcularDistancia(c);
+                    x+=distancia*cos(angulo);
+                    y+=distancia*sin(angulo);
+                } else if (c.obTipoMov() == "girar") {
+                    if (c.obUni() == "grd") {
+                        angulo += c.obMag() * (numbers::pi/180);
+                    } else {
+                        angulo += c.obMag();
+                    }
+                }
+            }
 
             cout << "La simulacion de los comandos, a partir de la posicion (" << args[1] << ", " << args[2]
-                 << "), deja al robot en la nueva posicion (nuevoX, nuevoY)." << endl;
+                 << "), deja al robot en la nueva posicion (" << x << ", " << y << ")." << endl;
         }
     } else {
         cout <<endl<< "Error: numero de parametros incorrecto" << endl;
         simularComandosA();
     }
+}
+
+float Curiosity::calcularDistancia(CMovimiento c) {
+    if (c.obUni() == "cm"){return c.obMag()/100;}
+    else if (c.obUni() == "m"){return c.obMag()/1;}
+    else if (c.obUni() == "dm"){return c.obMag()/10;}
+    else if (c.obUni() == "km"){return c.obMag()*1000;}
+
+    return 0;
 }
 
 //*********************
@@ -658,7 +692,7 @@ bool Curiosity::verificador(const string& cadena, int opcion) {
             return regex_match(cadena, patron);
         }
 		case 5: {
-			if(cadena == "fotografia" || cadena == "perforar" || cadena == "composicion"){return true;}
+			if(cadena == "fotografiar" || cadena == "perforar" || cadena == "composicion"){return true;}
 			else return false;
 			break;			//verifica si es de analisis
 		}
