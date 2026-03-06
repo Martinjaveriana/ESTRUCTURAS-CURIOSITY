@@ -172,7 +172,8 @@ void Curiosity::procesar(const string& entrada) {
         }
 
 	    else if (argumentos[0] == "guardar") {
-
+            cout<<"Error: numero de parametros incorrecto"<<endl;
+	        guardarA();
 	    }
 
 		else cout << "Error: comando no existente" << endl;
@@ -238,10 +239,6 @@ void Curiosity::cargar_comandos(vector<string>& args) {
 
 					vector<string> argsComandos = obtenerArgumentos(linea);
 
-                    cout << "primer token: '" << argsComandos[0] << "'" << endl; // DEBUG
-                    cout << "verificador 5: " << verificador(argsComandos[0], 5) << endl; // DEBUG
-                    cout << "verificador 6: " << verificador(argsComandos[0], 6) << endl; // DEBUG
-
 					if(verificador(argsComandos[0],5)){
 
 						if(!limpioA){
@@ -288,12 +285,9 @@ void Curiosity::cargar_comandos(vector<string>& args) {
     }
 }
 
-//=======================
-//REPORTAR ORIGEN PENDIENTE!!!!!!!!!!!!
-//=======================
-/*
 
-ayudame a cambiar esta funcion para que lea un archivo y cree los elementos que se leyeron, sobreescribindo el vector ya existente
+la siguiente funcion fue generada con la ia claude, con la siguiente promt, ademas tenia un poco del contexto del proyecto:
+ayudame a cambiar esta funcion que lee un archivo, haciendo que los argumentos de cada linea se junten en un vector para su posteor analisis en la funcion agregar_elemento.
 void Curiosity::cargar_elementos(vector<string>& args) {
     if (args.size() == 2) {
         ifstream arElementos((args[1] + ".txt"), ios::ate);
@@ -499,22 +493,26 @@ void Curiosity::simular_comandos(vector<string>& args) {
             float distancia = 0;
             float angulo = 0;//en radianes
 
-            for (CMovimiento c: comandos.obComMov()) {
-                if (c.obTipoMov() == "avanzar") {
-                    distancia = calcularDistancia(c);
-                    x+=distancia*cos(angulo);
-                    y+=distancia*sin(angulo);
-                } else if (c.obTipoMov() == "girar") {
-                    if (c.obUni() == "grd") {
-                        angulo += c.obMag() * (numbers::pi/180);
-                    } else {
-                        angulo += c.obMag();
+            if (!comandos.obComMov().empty()) {
+                for (CMovimiento c: comandos.obComMov()) {
+                    if (c.obTipoMov() == "avanzar") {
+                        distancia = calcularDistancia(c);
+                        x+=distancia*cos(angulo);
+                        y+=distancia*sin(angulo);
+                    } else if (c.obTipoMov() == "girar") {
+                        if (c.obUni() == "grd") {
+                            angulo += c.obMag() * (numbers::pi/180);
+                        } else {
+                            angulo += c.obMag();
+                        }
                     }
                 }
-            }
 
-            cout << "La simulacion de los comandos, a partir de la posicion (" << args[1] << ", " << args[2]
-                 << "), deja al robot en la nueva posicion (" << x << ", " << y << ")." << endl;
+                cout << "La simulacion de los comandos, a partir de la posicion (" << args[1] << ", " << args[2]
+                     << "), deja al robot en la nueva posicion (" << x << ", " << y << ")." << endl;
+            } else cout << "Error: La informacion requerida no esta en memoria." << endl;
+
+
         }
     } else {
         cout <<endl<< "Error: numero de parametros incorrecto" << endl;
