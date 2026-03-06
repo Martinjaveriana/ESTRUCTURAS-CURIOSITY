@@ -285,7 +285,7 @@ void Curiosity::cargar_comandos(vector<string>& args) {
     }
 }
 
-
+/*
 la siguiente funcion fue generada con la ia claude, con la siguiente promt, ademas tenia un poco del contexto del proyecto:
 ayudame a cambiar esta funcion que lee un archivo, haciendo que los argumentos de cada linea se junten en un vector para su posteor analisis en la funcion agregar_elemento.
 void Curiosity::cargar_elementos(vector<string>& args) {
