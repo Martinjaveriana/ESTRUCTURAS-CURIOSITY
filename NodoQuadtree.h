@@ -5,23 +5,26 @@
 #ifndef ESTRUCTURAS_CURIOSITY_NODOQUADTREEPUNTOS_H
 #define ESTRUCTURAS_CURIOSITY_NODOQUADTREEPUNTOS_H
 
+#include <list>
+#include "Punto.h
 using namespace std;
 
 
 template <class T>
 class NodoQuadtree {
-    protected:
-    T dato_NW;
-    T dato_NE;
-    T dato_SW;
-    T dato_SE;
-    list<NodoQuadtree<T>*> desc;
-public:
+ protected:
+    T datoPadre;
+    T datoNW;
+    T datoNE;
+    T datoSW;
+    T datoSE;
+
+ public:
     NodoQuadtree();
     ~NodoQuadtree();
     T& obtenerDato();
     void fijarDato(T& val);
-    void limpiarLista();
+    void limpiarHijos();
     void adicionarDesc(T& val);
     bool eliminarDesc(T& val);
     bool esHoja();
@@ -33,4 +36,4 @@ public:
 
 
 
-#endif //ESTRUCTURAS_CURIOSITY_NODOQUADTREEPUNTOS_H
+#endif //ESTRUCTURAS_CURIOSITY_NODOQUADTREE_H
