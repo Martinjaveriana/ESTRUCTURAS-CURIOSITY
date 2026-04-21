@@ -65,6 +65,14 @@ build CMakeFiles/curiosity.dir/interfazUsuario.cxx.o: CXX_COMPILER__curiosity_un
   OBJECT_FILE_DIR = CMakeFiles/curiosity.dir
   TARGET_SUPPORT_DIR = CMakeFiles/curiosity.dir
 
+build CMakeFiles/curiosity.dir/src/Elementos/k-dtree/NodoKD.cpp.o: CXX_COMPILER__curiosity_unscanned_Debug /home/ago/Ingenieria$ de$ Sistemas$ -$ data/Programacion/Proyectos$ CLion/Estructura$ de$ Datos/Proyecto/Proyecto$ Curiosity/src/Elementos/k-dtree/NodoKD.cpp || cmake_object_order_depends_target_curiosity
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles/curiosity.dir/src/Elementos/k-dtree/NodoKD.cpp.o.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/curiosity.dir
+  OBJECT_FILE_DIR = CMakeFiles/curiosity.dir/src/Elementos/k-dtree
+  TARGET_SUPPORT_DIR = CMakeFiles/curiosity.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target curiosity
@@ -73,7 +81,7 @@ build CMakeFiles/curiosity.dir/interfazUsuario.cxx.o: CXX_COMPILER__curiosity_un
 #############################################
 # Link the executable curiosity
 
-build curiosity: CXX_EXECUTABLE_LINKER__curiosity_Debug CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o CMakeFiles/curiosity.dir/interfazUsuario.cxx.o
+build curiosity: CXX_EXECUTABLE_LINKER__curiosity_Debug CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o CMakeFiles/curiosity.dir/interfazUsuario.cxx.o CMakeFiles/curiosity.dir/src/Elementos/k-dtree/NodoKD.cpp.o
   CONFIG = Debug
   DEP_FILE = CMakeFiles/curiosity.dir/link.d
   FLAGS = -g

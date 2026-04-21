@@ -19,7 +19,11 @@ add_executable(curiosity ${SOURCES}
         src/Comandos/ComandoMovimiento/CMovimiento.hxx
         src/Comandos/ComandoMovimiento/CMovimiento.h
         src/Elementos/Elemento.hxx
-        src/Elementos/Elemento.h)
+        src/Elementos/Elemento.h
+        src/Elementos/k-dtree/KDTree.hxx
+        src/Elementos/k-dtree/KDTree.h
+        src/Elementos/k-dtree/NodoKD.hxx
+        src/Elementos/k-dtree/NodoKD.h)
 
 # 1. Creamos una lista vacía para las rutas cortas
 set(SOURCES_RELATIVAS "")
