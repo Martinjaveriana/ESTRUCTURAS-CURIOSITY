@@ -1,0 +1,3 @@
+/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir
+/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/rebuild_cache.dir
