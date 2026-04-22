@@ -5,6 +5,7 @@
 #include <string>
 #include <queue>
 #include "Elementos/Elemento.h"
+#include "Elementos/k-dtree/KDTree.h"
 #include "Comandos/Comando.h"
 #include "Utilites/Utilities.h"
 
@@ -14,6 +15,7 @@ class Curiosity {
 protected:
     vector<Elemento*>* elementos;
     queue<Comando*>* comandos;
+    KDTree* arbolElementos;
 public:
     inline Curiosity();
     inline ~Curiosity();
@@ -21,6 +23,8 @@ public:
     inline void fijarElementos(vector<Elemento*>* elementos);
     inline queue<Comando*>* obtenerComandos();
     inline void fijarComandos(queue<Comando*>* comandos);
+    inline KDTree* obtenerArbolElementos();
+    inline void fijarArbolElementos(KDTree* tree);
 
     inline void agregarMovimiento(vector<string>* args);
     inline void agregarAnalisis(vector<string>* args, string comentario);

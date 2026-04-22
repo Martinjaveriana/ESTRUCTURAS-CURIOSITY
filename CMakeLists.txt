@@ -3,27 +3,17 @@ project(ProyectoCuriosity)
 
 set(CMAKE_CXX_STANDARD 20)
 
+# Solo buscamos recursivamente DENTRO de la carpeta src/
 file(GLOB_RECURSE SOURCES
-        "*.cpp" "*.cxx" "*.h" "*.hpp" "*.hxx"
-        "src/*.cxx" "src/*.cpp"
+        "src/*.cpp" "src/*.cxx"
         "src/*.h" "src/*.hpp" "src/*.hxx"
 )
 
-add_executable(curiosity ${SOURCES}
-        src/Utilites/Utilities.hxx
-        src/Utilites/Utilities.h
-        src/Comandos/Comando.hxx
-        src/Comandos/Comando.h
-        src/Comandos/ComandoAnalisis/CAnalisis.hxx
-        src/Comandos/ComandoAnalisis/CAnalisis.h
-        src/Comandos/ComandoMovimiento/CMovimiento.hxx
-        src/Comandos/ComandoMovimiento/CMovimiento.h
-        src/Elementos/Elemento.hxx
-        src/Elementos/Elemento.h
-        src/Elementos/k-dtree/KDTree.hxx
-        src/Elementos/k-dtree/KDTree.h
-        src/Elementos/k-dtree/NodoKD.hxx
-        src/Elementos/k-dtree/NodoKD.h)
+# Creamos el ejecutable uniendo el main principal y los archivos fuente de src/
+add_executable(curiosity
+        interfazUsuario.cxx
+        ${SOURCES}
+)
 
 # 1. Creamos una lista vacía para las rutas cortas
 set(SOURCES_RELATIVAS "")

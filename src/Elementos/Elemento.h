@@ -19,6 +19,7 @@ private:
 
 public:
     //contructor
+    inline Elemento();
     inline Elemento(string &nTipo, double &nTamano, string &nUnidad, float &nCoordX, float &nCoordY);
     inline ~Elemento();
     //getters

@@ -1,20 +1,8 @@
 [
 {
   "directory": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
-  "command": "/usr/bin/c++ -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o -c \"/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp\"",
-  "file": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp",
-  "output": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o"
-},
-{
-  "directory": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
   "command": "/usr/bin/c++ -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/curiosity.dir/interfazUsuario.cxx.o -c \"/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/interfazUsuario.cxx\"",
   "file": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/interfazUsuario.cxx",
   "output": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/interfazUsuario.cxx.o"
-},
-{
-  "directory": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug",
-  "command": "/usr/bin/c++ -g -std=gnu++20 -fdiagnostics-color=always -o CMakeFiles/curiosity.dir/src/Elementos/k-dtree/NodoKD.cpp.o -c \"/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/src/Elementos/k-dtree/NodoKD.cpp\"",
-  "file": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/src/Elementos/k-dtree/NodoKD.cpp",
-  "output": "/home/ago/Ingenieria de Sistemas - data/Programacion/Proyectos CLion/Estructura de Datos/Proyecto/Proyecto Curiosity/cmake-build-debug/CMakeFiles/curiosity.dir/src/Elementos/k-dtree/NodoKD.cpp.o"
 }
 ]

@@ -10,6 +10,7 @@ using namespace std;
 inline Curiosity::Curiosity() {
     this->comandos = new queue<Comando*>();
     this->elementos = new vector<Elemento*>();
+    this->arbolElementos = new KDTree();
 }
 
 inline Curiosity::~Curiosity() = default;
@@ -28,6 +29,14 @@ inline queue<Comando*>* Curiosity::obtenerComandos() {
 
 inline void Curiosity::fijarComandos(queue<Comando*>* comandos) {
     this->comandos = comandos;
+}
+
+inline KDTree* Curiosity::obtenerArbolElementos() {
+    return this->arbolElementos;
+}
+
+inline void Curiosity::fijarArbolElementos(KDTree* tree) {
+    this->arbolElementos = tree;
 }
 
 // COMANDOS DEL CURIOSITY
@@ -99,7 +108,8 @@ inline void Curiosity::cargar_comandos(vector<string>* args) {
 
 inline void Curiosity::cargar_elementos(vector<string>* args) {
     if (args->size() == 2) {
-        ifstream arElementos((args->at(1)), ios::ate);
+        string ruta = "Resources/" + args->at(1);
+        ifstream arElementos(ruta, ios::ate);
 
         if (arElementos.is_open()) {
             if (arElementos.tellg() == 0) {
@@ -248,7 +258,7 @@ inline void Curiosity::guardar(vector<string>* args) {
 				    }
 				} else cout << "Info: no hay comandos en el curiosity" << endl;
 
-                if(args->at(1) == "elementos" && this->elementos->empty()) {
+                if(args->at(1) == "elementos" && !this->elementos->empty()) {
 				    for(Eit = this->elementos->begin() ; Eit !=this->elementos->end(); Eit++ ) {
 				        arAGuardar << (*Eit)->obtenerTipo() << " " << (*Eit)->obtenerTamano() << " " << (*Eit)->obtenerUnidad() << " " << (*Eit)->obtenerCoordX() << " " << (*Eit)->obtenerCoordY() << endl;
 				    }
@@ -315,23 +325,22 @@ inline void Curiosity::simular_comandos(vector<string>* args) {
 
 // COMANDOS DE LA SEGUNDA ENTREGA
 inline void Curiosity::ubicar_elementos() {
-    string nombre = "ejemplo";
-    ifstream arElementos((nombre), ios::ate);
-
-    if (arElementos.is_open()) {
-        if (arElementos.tellg() == 0) {
-            cout << nombre << " no contiene elementos." << endl;
-        } else {
-            arElementos.seekg(0, ios::beg);
-            bool verElem = true;
-            if (verElem) cout << "Los elementos han sido procesados exitosamente" << endl;
-            else cout << "Los siguientes elementos no pudieron procesarse adecuadamente: ..." << endl;
-            arElementos.close();
-        }
-    } else {
-        cout << "Error: numero de parametros incorrecto (a implementar)" << endl;
-        Utilities::ubicarElementoA();
+    if (this->arbolElementos == nullptr) {
+        this->arbolElementos = new KDTree();
     }
+
+    cout << "AAAAAAAAAAAA" << endl;
+    vector<Elemento*>::const_iterator Eit;
+
+    cout << "AAAAAAAAAAAA" << endl;
+    for (Eit = this->elementos->begin(); Eit != this->elementos->end(); Eit++) {
+        cout << "AAAAAAAAAAAA" << endl;
+        if (*Eit != nullptr) {
+            this->arbolElementos->insertarNodo(*(*Eit));
+        }
+    }
+
+    this->arbolElementos->nivelOrden();
 }
 
 inline void Curiosity::en_cuadrante(vector<string>* args) {

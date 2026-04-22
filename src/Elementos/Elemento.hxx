@@ -1,5 +1,13 @@
 using namespace std;
 
+inline Elemento::Elemento() {
+    this->tipo = "";
+    this->tamano = 0.0;
+    this->unidad = "";
+    this->coordX = 0.0;
+    this->coordY = 0.0;
+}
+
 inline Elemento::Elemento(string& nTipo, double& nTamano, string& nUnidad, float& nCoordX, float& nCoordY) {
     this->tipo = nTipo;
     this->tamano = nTamano;

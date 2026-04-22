@@ -6,6 +6,7 @@
 #define PROYECTOCURIOSITY_AYUDA_H
 
 #include "../Comandos/ComandoMovimiento/CMovimiento.h"
+#include <vector>
 
 class Utilities {
 public:

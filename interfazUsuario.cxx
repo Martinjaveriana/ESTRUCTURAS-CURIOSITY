@@ -21,7 +21,7 @@ int main() {
         if (argumentos->size() == 1) {
             if (argumentos->at(0) == "ayuda") Utilities::funcionAyuda();
             else if (argumentos->at(0) == "salir") ejecutando = false;
-            else if (argumentos->at(0) == "ubicar_elementos") curiosity->ubicar_elementos();
+            else if (argumentos->at(0) == "ubicar_elementos") {curiosity->ubicar_elementos();}
 			else if (argumentos->at(0) == "ruta_mas_larga") curiosity->ruta_mas_larga();
 			else if (argumentos->at(0) == "cargar_comandos") {
 				cout<<"Error: numero de parametros incorrecto"<<endl;
