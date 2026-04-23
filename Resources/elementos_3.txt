@@ -1,0 +1,8 @@
+roca 13.2 cm 35 40
+duna 0.5 km 5 45
+crater 0.55 m 25 35
+monticulo 120 dm 50 10
+roca 5.0 cm 90 5
+duna 1.1 km 60 75
+crater 250 cm 80 65
+monticulo 2.2 m 85 15

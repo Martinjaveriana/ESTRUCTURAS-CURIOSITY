@@ -106,17 +106,14 @@ inline int KDTree::tamano(NodoKD* nodo)
 inline bool KDTree::insertarNodo(Elemento &val)  //no es necesario que sea recurrente, puede ser ITERATIVA
 {
     bool esX = true;
-    cout << "AAAAAAAAAAAA" << endl;
     NodoKD* nuevo;
-    cout << "AAAAAAAAAAAA" << endl;
 
     if (!this->esVacio())
     {
-        //Es el que quiero ins
         NodoKD* nodo = this->raiz;
         NodoKD* padre = this->raiz;
 
-        bool insertado = false, duplicado = false, der = false;
+        bool duplicado = false, der = false;
 
         //para llegar a donde lo quiero insertar
         while (nodo != nullptr && !duplicado)
@@ -130,9 +127,8 @@ inline bool KDTree::insertarNodo(Elemento &val)  //no es necesario que sea recur
                 } else if (val.obtenerCoordX() > nodo->obtenerElemento().obtenerCoordX()){
                     der = true;
                     nodo = nodo->obtenerHijoDer();
-                } else
+                } else if (val.obtenerCoordX() == nodo->obtenerElemento().obtenerCoordX() && val.obtenerCoordY() == nodo->obtenerElemento().obtenerCoordY())
                 {
-                    cout << "Error: el elemento de tipo '" << val.obtenerTipo() << "' no se pudo agregar, pues ya estaba" << endl;
                     duplicado = true;
                 }
             } else if (!esX) {
@@ -144,44 +140,35 @@ inline bool KDTree::insertarNodo(Elemento &val)  //no es necesario que sea recur
                 } else if (val.obtenerCoordY() > nodo->obtenerElemento().obtenerCoordY()){
                     der = true;
                     nodo = nodo->obtenerHijoDer();
-                } else
+                } else if (val.obtenerCoordX() == nodo->obtenerElemento().obtenerCoordX() && val.obtenerCoordY() == nodo->obtenerElemento().obtenerCoordY())
                 {
-                    cout << "Error: el elemento de tipo '" << val.obtenerTipo() << "' no se pudo agregar, pues ya estaba" << endl;
                     duplicado = true;
                 }
             }
             esX = !esX;
         }
 
-        //Insertar
         if (!duplicado)
         {
             nuevo = new NodoKD(val);
-            if (nuevo != nullptr)
-            {
-                if (!der)
-                {
-                    padre->fijarHijoIzq(nuevo);
-                } else
-                {
-                    padre->fijarHijoDer(nuevo);
-                }
-            } else cout << "Error: el elemento de tipo '" << val.obtenerTipo() << "' no se pudo agregar, pues es nulo" << endl;
 
-            insertado = true;
+            if (!der)
+            {
+                padre->fijarHijoIzq(nuevo);
+            } else
+            {
+                padre->fijarHijoDer(nuevo);
+            }
+
+            return true;
         }
 
-        return insertado;
+        return false;
     }
     nuevo = new NodoKD(val);
-    if (nuevo != nullptr)
-    {
-        this->raiz = nuevo;
+    this->raiz = nuevo;
 
-        return true;
-    }
-
-    return false;
+    return true;
 }
 
 inline bool KDTree::eliminarNodo(Elemento &val)  //pude ser ITERATIVA
@@ -465,4 +452,31 @@ inline NodoKD* KDTree::encontrarPadreMayor(NodoKD *nodo)
     }
 
     return nullptr;
+}
+
+inline void KDTree::clear() {
+    delete this->raiz;
+    this->raiz = nullptr;
+}
+
+inline vector<Elemento>* KDTree::enCuadrante(float x1, float y1, float x2, float y2) {
+    vector<Elemento>* elementos = new vector<Elemento>();
+
+    if (!this->esVacio())
+    {
+        this->enCuadrante(this->raiz->obtenerElemento(), this->raiz, *elementos, x1, y1, x2, y2);
+    }
+
+    return elementos;
+}
+
+inline void KDTree::enCuadrante(Elemento &val, NodoKD* nodo, std::vector<Elemento>& elementos, float x1, float y1, float x2, float y2) {
+    if (nodo != nullptr)
+    {
+        if ( (val.obtenerCoordX() >= x1 && val.obtenerCoordX() <= x2) && (val.obtenerCoordY() >= y1 && val.obtenerCoordY() <= y2) ) {
+            elementos.push_back(nodo->obtenerElemento());
+        }
+        this->enCuadrante(nodo->obtenerHijoIzq()->obtenerElemento(), nodo->obtenerHijoIzq(), elementos, x1, y1, x2, y2);
+        this->enCuadrante(nodo->obtenerHijoDer()->obtenerElemento(), nodo->obtenerHijoDer(), elementos, x1, y1, x2, y2);
+    }
 }

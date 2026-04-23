@@ -1,7 +1,8 @@
 # ninja log v7
-1	8	1776827198123332950	clean	a88d2dea4b12cb27
-2	32	1776827198438335908	CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o	cd84be259c70bba
-2	3859	1776827198439797594	CMakeFiles/curiosity.dir/interfazUsuario.cxx.o	205522ec3b4cb7b4
 1	7	1776827447773791423	clean	a88d2dea4b12cb27
+2	32	1776827198438335908	CMakeFiles/curiosity.dir/CMakeFiles/4.2.2/CompilerIdCXX/CMakeCXXCompilerId.cpp.o	cd84be259c70bba
 1	3923	1776827448012793870	CMakeFiles/curiosity.dir/interfazUsuario.cxx.o	205522ec3b4cb7b4
 3923	4103	1776827451934834052	curiosity	f9662ef93d0eb426
+1	4	1776908786913329854	clean	a88d2dea4b12cb27
+1	2108	1776908787141331780	CMakeFiles/curiosity.dir/interfazUsuario.cxx.o	205522ec3b4cb7b4
+2108	2207	1776908789248349573	curiosity	f9662ef93d0eb426

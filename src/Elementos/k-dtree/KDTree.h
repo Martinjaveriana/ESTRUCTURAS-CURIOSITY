@@ -32,6 +32,9 @@ public:
     inline std::vector<Elemento>* nivelOrden();
 
     inline NodoKD* encontrarPadreMayor(NodoKD *nodo);
+    inline std::vector<Elemento>* enCuadrante(float x1, float y1, float x2, float y2);
+    inline void enCuadrante(Elemento &val, NodoKD *nodo, std::vector<Elemento> &elementos , float x1, float y1, float x2, float y2);
+    inline void clear();
 };
 
 #include "KDTree.hxx"

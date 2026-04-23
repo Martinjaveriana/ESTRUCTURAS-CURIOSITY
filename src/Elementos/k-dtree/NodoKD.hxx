@@ -18,8 +18,12 @@ inline NodoKD::NodoKD(Elemento &val)
     this->hijoDer = nullptr;
 }
 
-inline NodoKD::~NodoKD()
-= default;
+inline NodoKD::~NodoKD() {
+    delete this->hijoIzq;
+    this->hijoIzq = nullptr;
+    delete this->hijoDer;
+    this->hijoDer = nullptr;
+}
 
 inline Elemento& NodoKD::obtenerElemento()
 {
