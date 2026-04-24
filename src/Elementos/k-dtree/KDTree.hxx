@@ -459,24 +459,40 @@ inline void KDTree::clear() {
     this->raiz = nullptr;
 }
 
+// Función pública
 inline vector<Elemento>* KDTree::enCuadrante(float x1, float y1, float x2, float y2) {
     vector<Elemento>* elementos = new vector<Elemento>();
-
-    if (!this->esVacio())
-    {
-        this->enCuadrante(this->raiz->obtenerElemento(), this->raiz, *elementos, x1, y1, x2, y2);
+    if (!this->esVacio()) {
+        // Iniciamos en la raíz, profundidad 0 (Eje X)
+        this->enCuadrante(this->raiz, *elementos, x1, y1, x2, y2, 0);
     }
-
     return elementos;
 }
 
-inline void KDTree::enCuadrante(Elemento &val, NodoKD* nodo, std::vector<Elemento>& elementos, float x1, float y1, float x2, float y2) {
-    if (nodo != nullptr)
-    {
-        if ( (val.obtenerCoordX() >= x1 && val.obtenerCoordX() <= x2) && (val.obtenerCoordY() >= y1 && val.obtenerCoordY() <= y2) ) {
-            elementos.push_back(nodo->obtenerElemento());
-        }
-        this->enCuadrante(nodo->obtenerHijoIzq()->obtenerElemento(), nodo->obtenerHijoIzq(), elementos, x1, y1, x2, y2);
-        this->enCuadrante(nodo->obtenerHijoDer()->obtenerElemento(), nodo->obtenerHijoDer(), elementos, x1, y1, x2, y2);
+// Función privada recursiva
+inline void KDTree::enCuadrante(NodoKD* nodo, std::vector<Elemento>& elementos, float x1, float y1, float x2, float y2, int profundidad) {
+
+    if (nodo == nullptr) return;
+
+    Elemento& actual = nodo->obtenerElemento();
+    float cx = actual.obtenerCoordX();
+    float cy = actual.obtenerCoordY();
+
+    // 1. Verificar si el punto actual está dentro del rectángulo
+    if (cx >= x1 && cx <= x2 && cy >= y1 && cy <= y2) {
+        elementos.push_back(actual);
+    }
+
+    // profundidad % 2 == 0 significa que estamos comparando en el Eje X
+    if (profundidad % 2 == 0) {
+        if (x1 < cx) // ¿El cuadrante se extiende a la izquierda del nodo?
+            enCuadrante(nodo->obtenerHijoIzq(), elementos, x1, y1, x2, y2, profundidad + 1);
+        if (x2 > cx) // ¿El cuadrante se extiende a la derecha del nodo?
+            enCuadrante(nodo->obtenerHijoDer(), elementos, x1, y1, x2, y2, profundidad + 1);
+    } else { // Eje Y
+        if (y1 < cy)
+            enCuadrante(nodo->obtenerHijoIzq(), elementos, x1, y1, x2, y2, profundidad + 1);
+        if (y2 > cy)
+            enCuadrante(nodo->obtenerHijoDer(), elementos, x1, y1, x2, y2, profundidad + 1);
     }
 }

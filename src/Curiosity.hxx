@@ -346,6 +346,9 @@ inline void Curiosity::en_cuadrante(vector<string>* args) {
                         cout << e.obtenerTipo() << " " << e.obtenerTamano() << " " << e.obtenerUnidad() << " " << e.obtenerCoordX() << " " << e.obtenerCoordY() << endl;
                     }
                 }
+                else {
+                    cout<< endl <<"no hay elementos en el cuadrante"<<endl;
+                }
             }
         }
     } else {

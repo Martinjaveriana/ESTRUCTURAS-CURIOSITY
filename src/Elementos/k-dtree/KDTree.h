@@ -33,7 +33,7 @@ public:
 
     inline NodoKD* encontrarPadreMayor(NodoKD *nodo);
     inline std::vector<Elemento>* enCuadrante(float x1, float y1, float x2, float y2);
-    inline void enCuadrante(Elemento &val, NodoKD *nodo, std::vector<Elemento> &elementos , float x1, float y1, float x2, float y2);
+    inline void enCuadrante(NodoKD* nodo, std::vector<Elemento>& elementos, float x1, float y1, float x2, float y2, int profundidad);
     inline void clear();
 };
 
