@@ -418,7 +418,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
                 for (int i = 0; i < vecinos && i < distancias_temp.size(); ++i) {
                     // insertarArista(verticeOrigen, verticeDestino, peso)
 
-                    /////////////////////////////////////
+                    ////////////////////////////////////
                     /// PRINTS PARA PROBAR EL COMANDO
                     ////////////////////////////////////
 
