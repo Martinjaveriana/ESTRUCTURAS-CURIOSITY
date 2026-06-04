@@ -368,3 +368,9 @@ int Grafo<V, C>::menorCola(vector<int>& cola, vector<C>& distanciaVer) {
 
     return iCostoMenor;
 }
+
+template <class V, class C>
+bool Grafo<V, C>::vacio() {
+    if (this->vertices->empty()) return true;
+    else return false;
+}

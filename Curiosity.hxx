@@ -416,13 +416,13 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
 
                 // Agregar las aristas solo para los 'N' vecinos más cercanos
                 for (int i = 0; i < vecinos && i < distancias_temp.size(); ++i) {
-                    // insertarArista(verticeOrigen, verticeDestino, peso)
 
+                    grafo->insertarArista(temp, distancias_temp[i].second, distancias_temp[i].first);
                     /////////////////////////////////////
                     /// PRINTS PARA PROBAR EL COMANDO
                     ////////////////////////////////////
 
-                    // grafo->insertarArista(temp, distancias_temp[i].second, distancias_temp[i].first);
+
                     // cout << "Conectando: " << temp.obtenerTipo() << " -> "
                     //      << distancias_temp[i].second.obtenerTipo()
                     //      << " (Peso: " << distancias_temp[i].first << ")\n";
@@ -437,5 +437,12 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
 }
 
 inline void Curiosity::ruta_mas_larga() {
+
+    if (grafo->vacio()) {
+        cout << "(No hay información) El mapa no ha sido generado todavía (con el comando crear_mapa)." << endl;
+        return;
+    }
+
+    vector<Elemento> vertices = grafo->getVertices();
 
 }
