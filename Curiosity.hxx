@@ -440,7 +440,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
         Utilities::crearMapaA();
     }
 }
-
+/*
 inline void Curiosity::ruta_mas_larga() {
 
     float INFINITO = std::numeric_limits<float>::max();
@@ -526,3 +526,5 @@ inline void Curiosity::ruta_mas_larga() {
     }
     cout << endl;
 }
+*/
+
