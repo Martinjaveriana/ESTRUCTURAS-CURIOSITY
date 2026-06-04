@@ -44,6 +44,7 @@ public:
     std::pair<std::vector<V>,std::vector<C>> dijkstra(int indiceVerticeInicio);
     //en pair<int,int> el primero es el valor del vertice,
     //el segundo es el costo para llegar a el desde un vector en especifico, ej. u
+    bool vacio();
 };
 
 #include "Grafo.hxx"
