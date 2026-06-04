@@ -130,6 +130,8 @@ inline void Curiosity::cargar_elementos(vector<string>* args) {
 
                 cout << "Info: " << this->elementos->size() << " elementos cargados correctamente desde " << args->at(1) << endl;
                 arElementos.close();
+                cout << "Se ubican los elementos agregados";
+                this->ubicar_elementos();
             }
         } else {
             cout << "Info: " << args->at(1) << " no se encuentra o no puede leerse." << endl;
@@ -229,13 +231,13 @@ inline void Curiosity::guardar(vector<string>* args) {
                             if (an != nullptr) arAGuardar << an->obtenerTipoAnalisis() << " " << an->obtenerObjeto() << " " << an->obtenerComentario() << endl;
                         }
                     }
-                } else cout << "Info: no hay comandos en el curiosity" << endl;
+                } else if(args->at(1) == "comandos") cout << "Info: no hay comandos en el curiosity" << endl;
 
                 if(args->at(1) == "elementos" && !this->elementos->empty()) {
                     for(Eit = this->elementos->begin() ; Eit !=this->elementos->end(); Eit++ ) {
                         arAGuardar << (*Eit)->obtenerTipo() << " " << (*Eit)->obtenerTamano() << " " << (*Eit)->obtenerUnidad() << " " << (*Eit)->obtenerCoordX() << " " << (*Eit)->obtenerCoordY() << endl;
                     }
-                } else cout << "Info: no hay elementos en el curiosity" << endl;
+                } else if(args->at(1) == "elementos") cout << "Info: no hay elementos en el curiosity" << endl;
 
                 if (arAGuardar.tellp() != 0) {
                     cout << "Info: La informacion ha sido guardada en " << args->at(2) << endl;
