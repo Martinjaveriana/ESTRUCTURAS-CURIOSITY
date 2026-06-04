@@ -3,10 +3,10 @@
 
 using namespace std;
 
-inline string Utilities::comentario(vector<string>* args){
+inline string Utilities::comentario(vector<string>& args){
     string temp;
-    for(int i = 3; i < args->size(); i ++) {
-        temp += args->at(i) + " ";
+    for(int i = 3; i < args.size(); i ++) {
+        temp += args.at(i) + " ";
     }
     return temp;
 }
@@ -41,14 +41,14 @@ comando argumento1 argumento2 ... argumentoN
 Necesito una función que tokenice la cadena completa y devuelva cada argumento por separado, usando exclusivamente la biblioteca estándar de C++, sin librerías externas. No puedo usar std::stringstream, ni strtok, ni nada que no sea parte del STL. Solo puedo usar std::string, bucles y contenedores como std::vector.
 */
 
-inline vector<string>* Utilities::obtenerArgumentos(string &entrada) {
-    vector<string>* args = new vector<string>();
+inline vector<string> Utilities::obtenerArgumentos(string &entrada) {
+    vector<string> args = vector<string>();
     string argActual = "";
 
     for (char c : entrada) {
         if (c == ' ') {
             if (argActual != "") {
-                args->push_back(argActual);
+                args.push_back(argActual);
                 argActual = "";
             }
         } else {
@@ -57,7 +57,7 @@ inline vector<string>* Utilities::obtenerArgumentos(string &entrada) {
     }
 
     if (argActual != "") {
-        args->push_back(argActual);
+        args.push_back(argActual);
     }
 
     return args;

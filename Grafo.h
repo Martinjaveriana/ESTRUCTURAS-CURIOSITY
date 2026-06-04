@@ -1,42 +1,51 @@
-#ifndef GRAFO_H
-#define GRAFO_H
+//
+// Created by ago on 6/05/26.
+//
 
-// V = Punto
-// C = float
-
-#define INFINITO std::numeric_limits<C>::max()
+#ifndef EJERCICIOS_DE_CLASE_GRAFO_H
+#define EJERCICIOS_DE_CLASE_GRAFO_H
 #define NOCONECTADO -1
+
+#include <vector>
+#include <list>
+#include <utility>
+#include <iterator>
 
 template <class V, class C>
 class Grafo {
 private:
-    // Guardamos los vértices reales (las coordenadas), generando una
-    // lista de los vertices que hay
-    std::vector<V> vertices;
+    std::vector<V>* vertices;
+    std::list< std::list< std::pair<int,C > >* >* aristas;
 
-    // Nuestra matriz de adyacencia de costos
-    std::vector<std::vector<C>> matriz;
+    static C INFINITO() { return std::numeric_limits<C>::max(); }
+    using edgesIterator = std::list< std::list <std::pair<int,C> >* >::iterator;
+    using verticesIterator = std::vector<V>::iterator;
+    using vectorEdgesIterator = std::list< std::pair<int,C> >::iterator;
 
+    bool aristaVisitada(std::vector<V>& visitados, V& vertice);
+    int menorCola(std::vector<int>& cola, std::vector<C>& distanciaVer);
 public:
-    // Constructor
     Grafo();
-
-    // TODO # 3: Insertar un vértice y hacer crecer la matriz
-    void InsertarVertice(const V& vertice);
-
-    // Método necesario para obtener un vértice y calcular su distancia (TODO # 4)
-    V ObtenerVertice(int indice) const;
-
-    // TODO # 4: Insertar la arista con su costo
-    void InsertarArista(int origen, int destino, C costo);
-
-    // TODO # 5 y # 7: Saber cuántos vértices hay para los bucles
-    unsigned int NumeroVertices() const;
-
-    // TODO # 7: Obtener el costo entre dos nodos para imprimir el informe
-    C ObtenerCosto(int origen, int destino) const;
-
+    ~Grafo();
+    std::vector<V>& getVertices();
+    std::list< std::list< std::pair<int,C > >* >& getAristas();
+    int cantidadVertices();
+    int cantidadAristas();
+    int buscarVertice(V vertice);
+    C buscarArista(V vOri, V vDes);
+    void insertarVertice(V vertice);
+    void insertarArista(V vOri, V vDes, C cost);
+    bool eliminarVertice(V vertice);
+    bool eliminarArista(V vOri, V vDes);
+    std::vector<V> recorridoPlano();
+    std::vector<V> recorridoDFS(V vertice);
+    void recorridoDFS(std::vector<V>& verVisit, V& vertice);
+    std::vector<V> recorridoBFS(V vertice);
+    std::pair<std::vector<V>,std::vector<C>> dijkstra(int indiceVerticeInicio);
+    //en pair<int,int> el primero es el valor del vertice,
+    //el segundo es el costo para llegar a el desde un vector en especifico, ej. u
 };
 
 #include "Grafo.hxx"
-#endif // GRAFO_H
+
+#endif //EJERCICIOS_DE_CLASE_GRAFO_H

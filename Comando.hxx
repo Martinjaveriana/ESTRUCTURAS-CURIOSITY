@@ -1,3 +1,5 @@
+#include "Comando.h"
+
 using namespace std;
 
 inline Comando::Comando() {
