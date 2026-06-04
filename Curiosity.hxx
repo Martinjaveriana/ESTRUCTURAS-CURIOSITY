@@ -6,6 +6,10 @@
 #include "CMovimiento.h"
 #include "Elemento.h"
 #include "Grafo.h"
+#include <vector>
+#include <list>
+#include <utility>
+#include <iterator>
 
 using namespace std;
 
@@ -418,6 +422,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
                 for (int i = 0; i < vecinos && i < distancias_temp.size(); ++i) {
 
                     grafo->insertarArista(temp, distancias_temp[i].second, distancias_temp[i].first);
+
                     /////////////////////////////////////
                     /// PRINTS PARA PROBAR EL COMANDO
                     ////////////////////////////////////
@@ -438,6 +443,8 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
 
 inline void Curiosity::ruta_mas_larga() {
 
+    float INFINITO = std::numeric_limits<float>::max();
+
     if (grafo->vacio()) {
         cout << "(No hay información) El mapa no ha sido generado todavía (con el comando crear_mapa)." << endl;
         return;
@@ -445,4 +452,77 @@ inline void Curiosity::ruta_mas_larga() {
 
     vector<Elemento> vertices = grafo->getVertices();
 
+    // VARIABLES PARA GUARDAR SOLO AL GANADOR (El Récord)
+    float max_dist_global = -1.0;
+    int max_origen_idx = -1;
+    int max_destino_idx = -1;
+    vector<Elemento> max_predecesores; // Aca solo se guarda el camino mas largo
+
+    // ====================================================================
+    // PASOS 1 y 2: Ejecutar Dijkstra, elegir el mayor y descartar la basura
+    // ====================================================================
+    for (int i = 0; i < vertices.size(); i++) {
+
+        // Calculamos Dijkstra desde el vértice 'i'
+        pair<vector<Elemento>, vector<float>> resultado = grafo->dijkstra(i);
+
+        // Revisamos de inmediato si alguna de las distancias rompe el récord
+        for (int j = 0; j < resultado.second.size(); j++) {
+
+            if (i != j && resultado.second[j] != INFINITO && resultado.second[j] > max_dist_global) {
+                // ¡Tenemos un nuevo récord! Actualizamos al ganador y olvidamos los anteriores
+                max_dist_global = resultado.second[j];
+                max_origen_idx = i;
+                max_destino_idx = j;
+                max_predecesores = resultado.first; // Solo guardamos las rutas de este Dijkstra
+            }
+        }
+    } // Al salir de este 'for', ya tenemos al ganador absoluto.
+
+    if (max_dist_global == -1.0) {
+        cout << "(No hay información) No hay rutas válidas en el mapa." << endl;
+        return;
+    }
+
+    // ====================================================================
+    // PASO 3: Reconstruir UN SOLO camino (el ganador)
+    // ====================================================================
+    vector<Elemento> ruta_final;
+    int actual_idx = max_destino_idx;
+
+    // Viajamos en reversa usando el único vector de predecesores que guardamos
+    while (actual_idx != max_origen_idx) {
+        ruta_final.push_back(vertices[actual_idx]);
+
+        Elemento paso_anterior = max_predecesores[actual_idx];
+
+        // Buscamos el índice del paso anterior (Asegúrate de usar el método correcto, ej: getId o obtenerTipo)
+        for (int k = 0; k < vertices.size(); k++) {
+            if (vertices[k].obtenerTipo() == paso_anterior.obtenerTipo()) {
+                actual_idx = k;
+                break;
+            }
+        }
+    }
+
+    // Metemos el origen y volteamos la lista
+    ruta_final.push_back(vertices[max_origen_idx]);
+    reverse(ruta_final.begin(), ruta_final.end());
+
+    // ====================================================================
+    // IMPRESIÓN FINAL (Tal cual pide el proyecto)
+    // ====================================================================
+    cout << "(Resultado exitoso) Los puntos de interés más alejados entre sí son "
+         << vertices[max_origen_idx].obtenerTipo() << " y "
+         << vertices[max_destino_idx].obtenerTipo() << ". La ruta\n"
+         << "que los conecta tiene una longitud total de " << max_dist_global
+         << " y pasa por los siguentes elementos:\n";
+
+    for (size_t x = 0; x < ruta_final.size(); x++) {
+        cout << ruta_final[x].obtenerTipo();
+        if (x < ruta_final.size() - 1) {
+            cout << " -> ";
+        }
+    }
+    cout << endl;
 }
