@@ -4,6 +4,8 @@
 #include <numbers>
 #include "CAnalisis.h"
 #include "CMovimiento.h"
+#include "Elemento.h"
+#include "Grafo.h"
 
 using namespace std;
 
@@ -377,7 +379,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
             //Verifica si hay elementos
             if (this->elementos->empty()) {
                 cout << "(No hay información) La información requerida no está almacenada en memoria." << endl;
-                return; // O la forma en la que manejes el retorno en tu método
+                return;
             }
             //Agrego cada uno de los elementos al grafo
             vector<Elemento>::iterator it;
@@ -435,11 +437,5 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
 }
 
 inline void Curiosity::ruta_mas_larga() {
-    bool hayMapa = false;
 
-    if (!hayMapa) {
-        cout << endl << "Info: El mapa no ha sido generado todavia (con el comando crear_mapa)." << endl << endl;
-    } else {
-        cout << "Info: Los puntos de interes mas alejados entre si son ... y ... La ruta que los conecta tiene una longitud total de ... y pasa por los siguientes elementos: ..." << endl;
-    }
 }
