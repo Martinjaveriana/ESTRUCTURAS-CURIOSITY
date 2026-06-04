@@ -79,4 +79,6 @@ int main() {
         	cout << "\nSyntaxis del comando: salir" << endl;
         } else if (argumentos->size() > 1) cout << "Error: comando no existente" << endl;
 	}
+
+	delete curiosity;
 }

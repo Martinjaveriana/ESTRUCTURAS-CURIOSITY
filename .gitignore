@@ -1,0 +1,37 @@
+# --- Directorios de build y archivos de CMake ---
+# CLion suele crear estos directorios
+cmake-build-*/
+build/
+bin/
+out/
+.cmake/
+
+# --- Binarios compilados ---
+# Ejecutables y librerías resultantes
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+curiosity
+
+# --- Archivos de caché e IDE ---
+# CLion y otros archivos de configuración
+.idea/
+.vs/
+.vscode/
+*.swp
+*.swo
+
+# --- Logs y archivos temporales ---
+*.log
+*.tmp
+*.bak
+*.gcda
+*.gcno
+
+# --- Archivos del sistema ---
+.DS_Store
+Thumbs.db
