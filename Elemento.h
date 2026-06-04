@@ -38,6 +38,8 @@ public:
     bool operator==(const Elemento& otro) const {
         return this->coordX == otro.coordX && this->coordY == otro.coordY;
     }
+    //Operacion
+    inline float distancia(Elemento &e1);
 };
 
 #include "Elemento.hxx"

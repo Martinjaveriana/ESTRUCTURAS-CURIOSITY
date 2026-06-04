@@ -1,3 +1,4 @@
+#include <cmath>
 using namespace std;
 
 inline Elemento::Elemento() {
@@ -56,4 +57,10 @@ inline void Elemento::fijarCoordX(float &nCoordX) {
 
 inline void Elemento::fijarCoordY(float &nCoordY) {
     this->coordY = nCoordY;
+}
+
+inline float Elemento::distancia(Elemento &e1) {
+    float x = coordX - e1.coordX;
+    float y = coordY - e1.coordY;
+    return( std::sqrt( ( x * x ) + ( y * y ) ) );
 }
