@@ -139,6 +139,8 @@ inline void Curiosity::cargar_elementos(vector<string>& args) {
 
                 cout << "Info: " << this->elementos->size() << " elementos cargados correctamente desde " << args.at(1) << endl;
                 arElementos.close();
+                cout << "Se ubican los elementos agregados";
+                this->ubicar_elementos();
             }
         } else {
             cout << "Info: " << args.at(1) << " no se encuentra o no puede leerse." << endl;
@@ -238,13 +240,13 @@ inline void Curiosity::guardar(vector<string>& args) {
                             if (an != nullptr) arAGuardar << an->obtenerTipoAnalisis() << " " << an->obtenerObjeto() << " " << an->obtenerComentario() << endl;
                         }
                     }
-                } else cout << "Info: no hay comandos en el curiosity" << endl;
+                } else if(args->at(1) == "comandos") cout << "Info: no hay comandos en el curiosity" << endl;
 
                 if(args.at(1) == "elementos" && !this->elementos->empty()) {
                     for(Eit = this->elementos->begin() ; Eit !=this->elementos->end(); Eit++ ) {
                         arAGuardar << Eit->obtenerTipo() << " " << Eit->obtenerTamano() << " " << Eit->obtenerUnidad() << " " << Eit->obtenerCoordX() << " " << Eit->obtenerCoordY() << endl;
                     }
-                } else cout << "Info: no hay elementos en el curiosity" << endl;
+                } else if(args->at(1) == "elementos") cout << "Info: no hay elementos en el curiosity" << endl;
 
                 if (arAGuardar.tellp() != 0) {
                     cout << "Info: La informacion ha sido guardada en " << args.at(2) << endl;
@@ -372,8 +374,56 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
         if (!Utilities::verificador(args.at(1), 1)) {
             cout << "Info: el coeficiente tiene que ser un numero" << endl;
         } else {
-            for (Elemento e: *this->elementos) {
-                this->grafo->insertarVertice(e);
+            string nombre = "ejemplo";
+            ifstream arElementos((nombre), ios::ate);
+
+            if (arElementos.is_open()) {
+                if (arElementos.tellg() == 0) {
+                    cout << "Info: " << nombre << " no contiene elementos." << endl;
+                } else {
+                    //
+                    // //Agrego cada uno de los elementos al grafo
+                    // vector<Elemento>::iterator it;
+                    // for (it = this->elementos->begin(); it != this->elementos->end(); ++it ) {
+                    //     grafo->insertarVertice(*it);
+                    // }
+                    //
+                    // //Obtengo los vertices del grafo
+                    // vector<Elemento> v = grafo->getVertices();
+                    //
+                    // //El numero de vecinos que tendra cada nodo, Se castea en un entero
+                    // int vecinos = static_cast<int>(v.size() * stof(args->at(1)));
+                    //
+                    // for (it = v.begin(); it != v.end(); ++it ) {
+                    //     Elemento temp = *it;
+                    //
+                    //     // Vector para guardar (distancia, Elemento_destino)
+                    //     vector<pair<float, Elemento>> distancias_temp;
+                    //
+                    //     vector<Elemento>::iterator it2;
+                    //     for (it2 = v.begin(); it2 != v.end(); ++it2) {
+                    //         if (it != it2) { // No compararlo consigo mismo
+                    //             float distancia = temp.distancia(*it2);
+                    //             distancias_temp.push_back(make_pair(distancia, *it2));
+                    //         }
+                    //     }
+                    //
+                    //     // Ordenar el vector de distancias de menor a mayor
+                    //     sort(distancias_temp.begin(), distancias_temp.end(),
+                    //         [](const pair<float, Elemento>& a, const pair<float, Elemento>& b) {
+                    //             return a.first < b.first;
+                    //         });
+                    //
+                    //     // Agregar las aristas solo para los 'N' vecinos más cercanos
+                    //     for (int i = 0; i < vecinos && i < distancias_temp.size(); ++i) {
+                    //         // Asumiendo que tu grafo tiene una función así:
+                    //         // insertarArista(verticeOrigen, verticeDestino, peso)
+                    //         grafo->insertarArista(temp, distancias_temp[i].second, distancias_temp[i].first);
+                    //     }
+                    // }
+                }
+            } else {
+                cout << "Info: La informacion requerida no esta almacenada en memoria" << endl;
             }
         }
     } else {
