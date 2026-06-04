@@ -23,10 +23,10 @@ public:
     inline static void crearMapaA();
     inline static void rutaMasLargaA();
 
-    inline static vector<string>* obtenerArgumentos(string &entrada);
+    inline static vector<string> obtenerArgumentos(string &entrada);
     inline static bool verificador(string &cadena, int opcion);
     inline static float calcularDistancia(CMovimiento &c);
-    inline static string comentario(vector<string>* args);
+    inline static string comentario(vector<string>& args);
 };
 
 #include "Utilities.hxx"

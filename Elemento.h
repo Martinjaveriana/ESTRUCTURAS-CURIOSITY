@@ -34,6 +34,10 @@ public:
     inline void fijarUnidad(string &nUnidad);
     inline void fijarCoordX(float &nCoordX);
     inline void fijarCoordY(float &nCoordY);
+    //comparador
+    bool operator==(const Elemento& otro) const {
+        return this->coordX == otro.coordX && this->coordY == otro.coordY;
+    }
 };
 
 #include "Elemento.hxx"
