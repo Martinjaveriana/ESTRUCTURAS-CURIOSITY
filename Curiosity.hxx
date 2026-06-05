@@ -384,7 +384,7 @@ void Curiosity::crear_mapa(vector<string>& args) {
 
             //Verifica si hay elementos
             if (this->elementos->empty()) {
-                cout << "(No hay información) La información requerida no está almacenada en memoria." << endl;
+                cout << "Error: (No hay información) La información requerida no está almacenada en memoria." << endl;
                 return;
             }
             //Agrego cada uno de los elementos al grafo
@@ -398,6 +398,11 @@ void Curiosity::crear_mapa(vector<string>& args) {
 
             //El numero de vecinos que tendra cada nodo, Se castea en un entero
             int vecinos = static_cast<int>(v.size() * stof(args[1]));
+
+            if (vecinos > v.size()) {
+                cout << "ERROR: hay " << v.size() << " vecinos, cada nodo no puede tener " << vecinos << endl;
+                return;
+            }
 
             for (it = v.begin(); it != v.end(); ++it) {
                 Elemento temp = *it;
