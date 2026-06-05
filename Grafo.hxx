@@ -15,6 +15,12 @@ struct MenorPorSegundo {
 };
 
 template <class V, class C>
+bool Grafo<V, C>::vacio() {
+    if (this->vertices->empty()) return true;
+    else return false;
+}
+
+template <class V, class C>
 Grafo<V, C>::Grafo() {
     this->vertices = new vector<V>;
     this->aristas = new list< list <pair<int,C> >* >;
@@ -370,7 +376,23 @@ int Grafo<V, C>::menorCola(vector<int>& cola, vector<C>& distanciaVer) {
 }
 
 template <class V, class C>
-bool Grafo<V, C>::vacio() {
-    if (this->vertices->empty()) return true;
-    else return false;
+vector<V> Grafo<V, C>::construirCamino(V origen, V destino, vector<V> predecesores) {
+    vector<V> camino;
+
+    verticesIterator vecIt, pred;
+    int iVerDestino = this->buscarVertice(destino);
+    vecIt = this->vertices->begin() + iVerDestino;
+
+    V actual = *vecIt;
+    camino.push_back(actual);
+
+    while (actual != origen) {
+        int iActual = this->buscarVertice(actual);
+        pred = predecesores.begin() + iActual;
+        actual = *pred;
+        camino.push_back(actual);
+    }
+    reverse(camino.begin(), camino.end());
+
+    return camino;
 }
