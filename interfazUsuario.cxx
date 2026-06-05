@@ -77,6 +77,8 @@ int main() {
         } else if (argumentos.size() > 1 && argumentos.at(0) == "salir") {
         	cout << "Error: numero de argumentos incorrecto" << endl;
         	cout << "\nSyntaxis del comando: salir" << endl;
+        }else if (argumentos.size() > 1 && argumentos.at(0) == "ruta_mas_larga") {
+	        cout << "Error: numero de argumentos incorrecto" << endl;
         } else if (argumentos.size() > 1) cout << "Error: comando no existente" << endl;
 	}
 
