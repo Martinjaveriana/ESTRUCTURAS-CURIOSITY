@@ -140,7 +140,7 @@ inline void Curiosity::cargar_elementos(vector<string>& args) {
                     }
 
                     argElemento.insert(argElemento.begin(), "agregar_elemento");
-                    agregar_elemento(argElemento, false);
+                    this->agregar_elemento(argElemento, false);
                 }
 
                 cout << "Info: " << this->elementos->size() << " elementos cargados correctamente desde " << args.at(1) << endl;
