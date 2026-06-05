@@ -19,21 +19,21 @@ private:
 
 public:
     //contructor
-    inline Elemento();
-    inline Elemento(string &nTipo, double &nTamano, string &nUnidad, float &nCoordX, float &nCoordY);
-    inline ~Elemento();
+    Elemento();
+    Elemento(string &nTipo, double &nTamano, string &nUnidad, float &nCoordX, float &nCoordY);
+    ~Elemento();
     //getters
-    inline string& obtenerTipo();
-    inline double& obtenerTamano();
-    inline string& obtenerUnidad();
-    inline float& obtenerCoordX();
-    inline float& obtenerCoordY();
+    string& obtenerTipo();
+    double& obtenerTamano();
+    string& obtenerUnidad();
+    float& obtenerCoordX();
+    float& obtenerCoordY();
     //setters
-    inline void fijarTipo(string &nTipo);
-    inline void fijarTamano(double &nTamano);
-    inline void fijarUnidad(string &nUnidad);
-    inline void fijarCoordX(float &nCoordX);
-    inline void fijarCoordY(float &nCoordY);
+    void fijarTipo(string &nTipo);
+    void fijarTamano(double &nTamano);
+    void fijarUnidad(string &nUnidad);
+    void fijarCoordX(float &nCoordX);
+    void fijarCoordY(float &nCoordY);
     //operadores
     bool operator==(const Elemento& otro) const {
         return this->coordX == otro.coordX && this->coordY == otro.coordY
@@ -46,7 +46,8 @@ public:
         || this->tipo != otro.tipo;
     }
     //Operacion
-    inline float distancia(Elemento &e1);
+    float distancia(Elemento &e1);
+    void imprimirElemento();
 };
 
 #include "Elemento.hxx"
