@@ -145,8 +145,8 @@ inline void Curiosity::cargar_elementos(vector<string>& args) {
 
                 cout << "Info: " << this->elementos->size() << " elementos cargados correctamente desde " << args.at(1) << endl;
                 arElementos.close();
-                cout << "Se ubican los elementos agregados";
-                this->ubicar_elementos();
+                //cout << "Se ubican los elementos agregados";
+                //this->ubicar_elementos();
             }
         } else {
             cout << "Info: " << args.at(1) << " no se encuentra o no puede leerse." << endl;
@@ -380,6 +380,8 @@ void Curiosity::crear_mapa(vector<string>& args) {
         if (!Utilities::verificador(args.at(1), 1)) {
             cout << "Info: el coeficiente tiene que ser un numero" << endl;
         } else {
+            this->grafo = new Grafo<Elemento, float>;
+
             //Verifica si hay elementos
             if (this->elementos->empty()) {
                 cout << "(No hay información) La información requerida no está almacenada en memoria." << endl;
@@ -388,11 +390,11 @@ void Curiosity::crear_mapa(vector<string>& args) {
             //Agrego cada uno de los elementos al grafo
             vector<Elemento>::iterator it;
             for (it = this->elementos->begin(); it != this->elementos->end(); ++it) {
-                grafo->insertarVertice(*it);
+                this->grafo->insertarVertice(*it);
             }
 
             //Obtengo los vertices del grafo
-            vector<Elemento> v = grafo->getVertices();
+            vector<Elemento> v = this->grafo->getVertices();
 
             //El numero de vecinos que tendra cada nodo, Se castea en un entero
             int vecinos = static_cast<int>(v.size() * stof(args[1]));
@@ -440,94 +442,53 @@ void Curiosity::crear_mapa(vector<string>& args) {
         Utilities::crearMapaA();
     }
 }
-/*
-inline void Curiosity::ruta_mas_larga() {
-
-    float INFINITO = std::numeric_limits<float>::max();
-
-    if (grafo->vacio()) {
-        cout << "(No hay información) El mapa no ha sido generado todavía (con el comando crear_mapa)." << endl;
-        return;
-    }
-
-    vector<Elemento> vertices = grafo->getVertices();
-
-    // VARIABLES PARA GUARDAR SOLO AL GANADOR (El Récord)
-    float max_dist_global = -1.0;
-    int max_origen_idx = -1;
-    int max_destino_idx = -1;
-    vector<Elemento> max_predecesores; // Aca solo se guarda el camino mas largo
-
-    // ====================================================================
-    // PASOS 1 y 2: Ejecutar Dijkstra, elegir el mayor y descartar la basura
-    // ====================================================================
-    for (int i = 0; i < vertices.size(); i++) {
-
-        // Calculamos Dijkstra desde el vértice 'i'
-        pair<vector<Elemento>, vector<float>> resultado = grafo->dijkstra(i);
-
-        // Revisamos de inmediato si alguna de las distancias rompe el récord
-        for (int j = 0; j < resultado.second.size(); j++) {
-
-            if (i != j && resultado.second[j] != INFINITO && resultado.second[j] > max_dist_global) {
-                // ¡Tenemos un nuevo récord! Actualizamos al ganador y olvidamos los anteriores
-                max_dist_global = resultado.second[j];
-                max_origen_idx = i;
-                max_destino_idx = j;
-                max_predecesores = resultado.first; // Solo guardamos las rutas de este Dijkstra
-            }
-        }
-    } // Al salir de este 'for', ya tenemos al ganador absoluto.
-
-    if (max_dist_global == -1.0) {
-        cout << "(No hay información) No hay rutas válidas en el mapa." << endl;
-        return;
-    }
-
-    // ====================================================================
-    // PASO 3: Reconstruir UN SOLO camino (el ganador)
-    // ====================================================================
-    vector<Elemento> ruta_final;
-    int actual_idx = max_destino_idx;
-
-    // Viajamos en reversa usando el único vector de predecesores que guardamos
-    while (actual_idx != max_origen_idx) {
-        ruta_final.push_back(vertices[actual_idx]);
-
-        Elemento paso_anterior = max_predecesores[actual_idx];
-
-        // Buscamos el índice del paso anterior (Asegúrate de usar el método correcto, ej: getId o obtenerTipo)
-        for (int k = 0; k < vertices.size(); k++) {
-            if (vertices[k].obtenerTipo() == paso_anterior.obtenerTipo()) {
-                actual_idx = k;
-                break;
-            }
-        }
-    }
-
-    // Metemos el origen y volteamos la lista
-    ruta_final.push_back(vertices[max_origen_idx]);
-    reverse(ruta_final.begin(), ruta_final.end());
-
-    // ====================================================================
-    // IMPRESIÓN FINAL (Tal cual pide el proyecto)
-    // ====================================================================
-    cout << "(Resultado exitoso) Los puntos de interés más alejados entre sí son "
-         << vertices[max_origen_idx].obtenerTipo() << " y "
-         << vertices[max_destino_idx].obtenerTipo() << ". La ruta\n"
-         << "que los conecta tiene una longitud total de " << max_dist_global
-         << " y pasa por los siguentes elementos:\n";
-
-    for (size_t x = 0; x < ruta_final.size(); x++) {
-        cout << ruta_final[x].obtenerTipo();
-        if (x < ruta_final.size() - 1) {
-            cout << " -> ";
-        }
-    }
-    cout << endl;
-}
-*/
 
 void Curiosity::ruta_mas_larga() {
-    
+    if (grafo->vacio()) {
+        cout << "El mapa no ha sido generado todavía (con el comando crear_mapa)." << endl;
+    } else {
+        float longitudRuta = -1;
+        Elemento oriGanador = Elemento();
+        Elemento desGanador = Elemento();
+
+        vector<Elemento>::iterator verActual;
+
+        for (verActual = this->grafo->getVertices().begin(); verActual != this->grafo->getVertices().end(); ++verActual) {
+            int iVerActual = this->grafo->buscarVertice(*verActual);
+            pair<vector<Elemento>,vector<float>> dijkstraVerActual = this->grafo->dijkstra(iVerActual);
+            vector<float>& distVerActual = dijkstraVerActual.second;
+
+            for (int j = 0; j < distVerActual.size(); ++j) {
+                if (distVerActual.at(j) != 0 && distVerActual.at(j) != numeric_limits<float>::max()) {
+                    if (distVerActual.at(j) > longitudRuta) {
+                        longitudRuta = distVerActual.at(j);
+                        oriGanador = *verActual;
+                        desGanador = this->grafo->getVertices().at(j);
+                    }
+                }
+            }
+        }
+
+        int iOriGanador = this->grafo->buscarVertice(oriGanador);
+        pair<vector<Elemento>,vector<float>> dijkstraGanador = this->grafo->dijkstra(iOriGanador);
+
+        vector<Elemento> rutaMasLarga = this->grafo->construirCamino(oriGanador, desGanador, dijkstraGanador.first);
+
+        cout << "Los puntos de interés más alejados entre sí son:\n" << endl;
+        oriGanador.imprimirElemento();
+
+        cout << "\ny\n" << endl;
+        desGanador.imprimirElemento();
+
+        cout << "\nLa ruta que los conecta tiene una longitud total de " << longitudRuta << " ";
+
+        cout << "y pasa por los siguentes elementos:\n" << endl;
+
+        int i = 1;
+        for (Elemento e : rutaMasLarga) {
+            cout << "elemento " << i << ":" << endl;
+            e.imprimirElemento();
+            i++;
+        }
+    }
 }

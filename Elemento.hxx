@@ -1,7 +1,7 @@
 #include <cmath>
 using namespace std;
 
-inline Elemento::Elemento() {
+Elemento::Elemento() {
     this->tipo = "";
     this->tamano = 0.0;
     this->unidad = "";
@@ -9,7 +9,7 @@ inline Elemento::Elemento() {
     this->coordY = 0.0;
 }
 
-inline Elemento::Elemento(string& nTipo, double& nTamano, string& nUnidad, float& nCoordX, float& nCoordY) {
+Elemento::Elemento(string& nTipo, double& nTamano, string& nUnidad, float& nCoordX, float& nCoordY) {
     this->tipo = nTipo;
     this->tamano = nTamano;
     this->unidad = nUnidad;
@@ -17,50 +17,56 @@ inline Elemento::Elemento(string& nTipo, double& nTamano, string& nUnidad, float
     this->coordY = nCoordY;
 }
 
-inline Elemento::~Elemento() = default;
+Elemento::~Elemento() = default;
 
-inline string& Elemento::obtenerTipo() {
+string& Elemento::obtenerTipo() {
     return this->tipo;
 }
 
-inline double& Elemento::obtenerTamano() {
+double& Elemento::obtenerTamano() {
     return this->tamano;
 }
 
-inline string& Elemento::obtenerUnidad() {
+string& Elemento::obtenerUnidad() {
     return this->unidad;
 }
 
-inline float& Elemento::obtenerCoordX() {
+float& Elemento::obtenerCoordX() {
     return this->coordX;
 }
 
-inline float& Elemento::obtenerCoordY() {
+float& Elemento::obtenerCoordY() {
     return this->coordY;
 }
 
-inline void Elemento::fijarTipo(string &nTipo) {
+void Elemento::fijarTipo(string &nTipo) {
     this->tipo = nTipo;
 }
 
-inline void Elemento::fijarTamano(double &nTamano) {
+void Elemento::fijarTamano(double &nTamano) {
     this->tamano = nTamano;
 }
 
-inline void Elemento::fijarUnidad(string &nUnidad) {
+void Elemento::fijarUnidad(string &nUnidad) {
     this->unidad = nUnidad;
 }
 
-inline void Elemento::fijarCoordX(float &nCoordX) {
+void Elemento::fijarCoordX(float &nCoordX) {
     this->coordX = nCoordX;
 }
 
-inline void Elemento::fijarCoordY(float &nCoordY) {
+void Elemento::fijarCoordY(float &nCoordY) {
     this->coordY = nCoordY;
 }
 
-inline float Elemento::distancia(Elemento &e1) {
+float Elemento::distancia(Elemento &e1) {
     float x = coordX - e1.coordX;
     float y = coordY - e1.coordY;
     return( std::sqrt( ( x * x ) + ( y * y ) ) );
+}
+
+inline void Elemento::imprimirElemento() {
+    cout << "tipo: " << this->obtenerTipo() << "\ttamaño: " << this->obtenerTamano()
+        << "\tunidad: " << this->obtenerUnidad() << "\tcoordenada x:" << this->obtenerCoordX()
+        << "\tcoordenada y: " << this->obtenerCoordY() << endl;
 }
