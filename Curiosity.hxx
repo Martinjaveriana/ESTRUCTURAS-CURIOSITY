@@ -375,7 +375,7 @@ inline void Curiosity::en_cuadrante(vector<string>& args) {
 }
 
 // COMANDOS DE LA TERCERA ENTREGA
-inline void Curiosity::crear_mapa(vector<string>& args) {
+void Curiosity::crear_mapa(vector<string>& args) {
     if (args.size() == 2) {
         if (!Utilities::verificador(args.at(1), 1)) {
             cout << "Info: el coeficiente tiene que ser un numero" << endl;
@@ -423,7 +423,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
 
                     grafo->insertarArista(temp, distancias_temp[i].second, distancias_temp[i].first);
 
-                    /////////////////////////////////////
+                    ////////////////////////////////////
                     /// PRINTS PARA PROBAR EL COMANDO
                     ////////////////////////////////////
 
@@ -440,7 +440,7 @@ inline void Curiosity::crear_mapa(vector<string>& args) {
         Utilities::crearMapaA();
     }
 }
-
+/*
 inline void Curiosity::ruta_mas_larga() {
 
     float INFINITO = std::numeric_limits<float>::max();
@@ -525,4 +525,9 @@ inline void Curiosity::ruta_mas_larga() {
         }
     }
     cout << endl;
+}
+*/
+
+void Curiosity::ruta_mas_larga() {
+    
 }

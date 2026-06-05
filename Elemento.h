@@ -34,9 +34,16 @@ public:
     inline void fijarUnidad(string &nUnidad);
     inline void fijarCoordX(float &nCoordX);
     inline void fijarCoordY(float &nCoordY);
-    //comparador
+    //operadores
     bool operator==(const Elemento& otro) const {
-        return this->coordX == otro.coordX && this->coordY == otro.coordY;
+        return this->coordX == otro.coordX && this->coordY == otro.coordY
+        && this->tamano == otro.tamano && this->unidad == otro.unidad
+        && this->tipo == otro.tipo;
+    }
+    bool operator!=(const Elemento& otro) const {
+        return this->coordX != otro.coordX || this->coordY != otro.coordY
+        || this->tamano != otro.tamano || this->unidad != otro.unidad
+        || this->tipo != otro.tipo;
     }
     //Operacion
     inline float distancia(Elemento &e1);

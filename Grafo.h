@@ -45,6 +45,7 @@ public:
     //en pair<int,int> el primero es el valor del vertice,
     //el segundo es el costo para llegar a el desde un vector en especifico, ej. u
     bool vacio();
+    std::vector<V> construirCamino(V origen, V destino, std::vector<V> predecesores);
 };
 
 #include "Grafo.hxx"
